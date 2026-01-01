@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visum & Transit | Großliechtenstein</title>
+    <style>
+        /* CSS WIE OBEN */
+        :root { --bg-color: #f4f4f0; --text-color: #1a1a1a; --accent-blue: #003366; --alert-red: #cc0000; --grid-line: #d1d1d1; --font-serif: 'Georgia', serif; --font-mono: 'Courier New', monospace; }
+        * { box-sizing: border-box; margin: 0; padding: 0; cursor: crosshair; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: var(--font-serif); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .mono { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; }
+        .redacted { background: black; color: black; padding: 0 4px; transition: 0.3s; user-select: none; }
+        .redacted:hover { background: transparent; color: var(--alert-red); }
+        .btn-outline { background: transparent; color: var(--text-color); border: 1px solid var(--text-color); padding: 5px 10px; font-family: var(--font-mono); cursor: pointer; }
+        .btn-outline:hover { background: var(--text-color); color: var(--bg-color); }
+        
+        header { border-bottom: 2px solid var(--text-color); padding: 1.5rem 0; position: sticky; top: 0; background: var(--bg-color); z-index: 100; }
+        .nav-flex { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; }
+        nav ul { display: flex; gap: 2rem; }
+        nav li a { font-family: var(--font-mono); font-size: 0.8rem; position: relative; }
+        .active-nav { border-bottom: 2px solid var(--accent-blue); font-weight: bold; color: var(--accent-blue); }
+
+        .news-ticker { background: var(--text-color); color: var(--bg-color); padding: 0.5rem 0; font-family: var(--font-mono); font-size: 0.8rem; overflow: hidden; white-space: nowrap; }
+        .ticker-content { display: inline-block; animation: ticker 25s linear infinite; }
+        @keyframes ticker { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
+
+        /* Page Specific */
+        .download-box { border: 1px dashed var(--text-color); padding: 1rem; display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; background: #fff; }
+
+        footer { border-top: 5px solid var(--text-color); padding: 4rem 0; background: #ebebeb; margin-top: auto; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <div class="news-ticker">
+        <div class="ticker-content">+++ GRENZE SCHAANWALD GESCHLOSSEN +++ NUR DIPLOMATENVERKEHR +++</div>
+    </div>
+
+    <header>
+        <div class="container nav-flex">
+            <a href="index.html" class="logo"><span>&#9813;</span> Großliechtenstein</a>
+            <nav>
+                <ul>
+                    <li><a href="lagebericht.html">Lagebericht</a></li>
+                    <li><a href="visum.html" class="active-nav">Visum & Transit</a></li>
+                    <li><a href="history.html">Historische Akten</a></li>
+                    <li><a href="meldeportal.html" style="color:var(--alert-red)">Meldeportal</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 style="margin-top: 3rem;">Konsularische Angelegenheiten</h1>
+        <p>Aufgrund der anhaltenden Besatzung durch die Republik Österreich gelten für die Einreise in das Hoheitsgebiet Großliechtenstein (Sektor Vorarlberg) verschärfte Bestimmungen.</p>
+        
+        <div style="background: #fff; border: 1px solid var(--text-color); padding: 2rem; margin: 2rem 0;">
+            <h3 style="margin-bottom:1rem;">Visumantrag für Bürger der EU/DAUT-Staaten</h3>
+            <p style="font-size:0.9rem; margin-bottom:1rem; color:var(--alert-red);">WARNUNG: Die Einreise über Bregenz-Ost erfolgt auf eigene Gefahr. Österreichische Grenzposten erkennen großliechtensteinische Visa nicht an.</p>
+            
+            <div class="download-box">
+                <div>
+                    <strong>Formular 7B - Einreiseantrag</strong><br>
+                    <span class="mono">PDF, 4.2 MB, geschwärzt</span>
+                </div>
+                <button class="btn-outline" onclick="alert('Download durch Firewall blockiert.')">Download</button>
+            </div>
+            
+            <div class="download-box">
+                <div>
+                    <strong>Formular 12 - Loyalitätserklärung</strong><br>
+                    <span class="mono">Benötigt für Aufenthalt > 24h</span>
+                </div>
+                <button class="btn-outline" onclick="alert('Download durch Firewall blockiert.')">Download</button>
+            </div>
+        </div>
+
+        <h3>Transitkorridor Schweiz</h3>
+        <p>Wir empfehlen die Einreise über die Schweiz. Der Rheinübergang bei Vaduz ist der einzig sichere Zugangspunkt zum befreiten Gebiet Feldkirch. </p>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Regierung Großliechtenstein.</p>
+        </div>
+    </footer>
+</body>
+</html>

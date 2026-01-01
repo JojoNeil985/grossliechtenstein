@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historische Akten | Großliechtenstein</title>
+    <style>
+        /* CSS WIE OBEN */
+        :root { --bg-color: #f4f4f0; --text-color: #1a1a1a; --accent-blue: #003366; --alert-red: #cc0000; --grid-line: #d1d1d1; --font-serif: 'Georgia', serif; --font-mono: 'Courier New', monospace; }
+        * { box-sizing: border-box; margin: 0; padding: 0; cursor: crosshair; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: var(--font-serif); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .mono { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; }
+        
+        header { border-bottom: 2px solid var(--text-color); padding: 1.5rem 0; position: sticky; top: 0; background: var(--bg-color); z-index: 100; }
+        .nav-flex { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; }
+        nav ul { display: flex; gap: 2rem; }
+        nav li a { font-family: var(--font-mono); font-size: 0.8rem; position: relative; }
+        .active-nav { border-bottom: 2px solid var(--accent-blue); font-weight: bold; color: var(--accent-blue); }
+
+        .news-ticker { background: var(--text-color); color: var(--bg-color); padding: 0.5rem 0; font-family: var(--font-mono); font-size: 0.8rem; overflow: hidden; white-space: nowrap; }
+        .ticker-content { display: inline-block; animation: ticker 25s linear infinite; }
+        @keyframes ticker { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
+
+        /* Page Specific */
+        .timeline { border-left: 2px solid var(--text-color); margin-left: 20px; padding-left: 20px; margin-top: 3rem; }
+        .timeline-item { margin-bottom: 3rem; position: relative; }
+        .timeline-item::before { content: ''; position: absolute; left: -27px; top: 5px; width: 12px; height: 12px; background: var(--text-color); border-radius: 50%; }
+        .timeline-year { font-family: var(--font-mono); font-weight: bold; font-size: 1.2rem; }
+        
+        /* Glitch Animation for text */
+        @keyframes glitch-anim { 0% { opacity:1; } 50% { opacity:0.8; transform: skewX(10deg); } 100% { opacity:1; } }
+        .glitch-text:hover { animation: glitch-anim 0.2s infinite; color: var(--alert-red); cursor: help; }
+
+        footer { border-top: 5px solid var(--text-color); padding: 4rem 0; background: #ebebeb; margin-top: auto; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <div class="news-ticker">
+        <div class="ticker-content">+++ ARCHIVZUGRIFF GEWÄHRT +++ NUR LESEMODUS +++</div>
+    </div>
+
+    <header>
+        <div class="container nav-flex">
+            <a href="index.html" class="logo"><span>&#9813;</span> Großliechtenstein</a>
+            <nav>
+                <ul>
+                    <li><a href="lagebericht.html">Lagebericht</a></li>
+                    <li><a href="visum.html">Visum & Transit</a></li>
+                    <li><a href="history.html" class="active-nav">Historische Akten</a></li>
+                    <li><a href="meldeportal.html" style="color:var(--alert-red)">Meldeportal</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 style="margin-top: 3rem;">Historische Wahrheit</h1>
+        <p>Die offizielle Geschichtsschreibung Österreichs ist eine <span class="glitch-text" style="text-decoration: underline;">Lüge</span>. Hier finden Sie die Fakten zur historischen Einheit der Grafschaft Feldkirch und des Fürstentums.</p>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-year">1919</div>
+                <h3>Der Verrat von St. Germain</h3>
+                <p>80% der Vorarlberger Bevölkerung stimmen für den Anschluss an die Schweiz. Als dieser verwehrt wird, formiert sich der Widerstand zur Vereinigung mit Liechtenstein.</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1984</div>
+                <h3>Gründung der GLBF</h3>
+                <p>Die Großliechtensteinische Befreiungsfront tritt erstmals militärisch in Erscheinung. Ziele: Schutz der alemannischen Identität und Abwehr des Wiener Zentralismus.</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2009</div>
+                <h3>Schlacht um die Bregenzer Ach</h3>
+                <p>Österreichische Truppen versuchen, den westlichen Teil von Bregenz zu stürmen. Partisanenverbände halten die Linie. Die Stadt wird faktisch geteilt.</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2022</div>
+                <h3>Das Buch von Elias Bachmann</h3>
+                <p>Veröffentlichung von "Das Fürstentum im Schatten". Das Werk beweist die Legitimität unserer Ansprüche, wird jedoch in der EU verboten.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Regierung Großliechtenstein.</p>
+        </div>
+    </footer>
+</body>
+</html>

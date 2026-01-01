@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meldeportal | Großliechtenstein</title>
+    <style>
+        /* CSS WIE OBEN */
+        :root { --bg-color: #f4f4f0; --text-color: #1a1a1a; --accent-blue: #003366; --alert-red: #cc0000; --grid-line: #d1d1d1; --font-serif: 'Georgia', serif; --font-mono: 'Courier New', monospace; }
+        * { box-sizing: border-box; margin: 0; padding: 0; cursor: crosshair; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: var(--font-serif); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .mono { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; }
+        .btn { padding: 10px 20px; font-family: var(--font-mono); border: none; cursor: pointer; }
+        
+        header { border-bottom: 2px solid var(--text-color); padding: 1.5rem 0; position: sticky; top: 0; background: var(--bg-color); z-index: 100; }
+        .nav-flex { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; }
+        nav ul { display: flex; gap: 2rem; }
+        nav li a { font-family: var(--font-mono); font-size: 0.8rem; position: relative; }
+        
+        .news-ticker { background: var(--text-color); color: var(--bg-color); padding: 0.5rem 0; font-family: var(--font-mono); font-size: 0.8rem; overflow: hidden; white-space: nowrap; }
+        .ticker-content { display: inline-block; animation: ticker 25s linear infinite; }
+        @keyframes ticker { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
+
+        /* Page Specific: Dark Mode */
+        .dark-mode-section { background: #111; color: #eee; padding: 3rem; border: 1px solid #333; margin-top: 3rem; }
+        .dark-mode-section input, .dark-mode-section textarea, .dark-mode-section select { background: #222; border: 1px solid #444; color: #0f0; font-family: var(--font-mono); width: 100%; padding: 10px; margin-bottom: 1rem; }
+        .dark-mode-section label { color: #aaa; font-family: var(--font-mono); font-size: 0.9rem; display: block; margin-bottom: 5px; }
+        .warning-text { color: var(--alert-red); font-size: 0.8rem; margin-top: -10px; margin-bottom: 15px; }
+
+        footer { border-top: 5px solid var(--text-color); padding: 4rem 0; background: #ebebeb; margin-top: auto; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <div class="news-ticker">
+        <div class="ticker-content">+++ VERSCHLÜSSELTE VERBINDUNG +++ KANAL OMEGA AKTIV +++</div>
+    </div>
+
+    <header>
+        <div class="container nav-flex">
+            <a href="index.html" class="logo"><span>&#9813;</span> Großliechtenstein</a>
+            <nav>
+                <ul>
+                    <li><a href="lagebericht.html">Lagebericht</a></li>
+                    <li><a href="visum.html">Visum & Transit</a></li>
+                    <li><a href="history.html">Historische Akten</a></li>
+                    <li><a href="meldeportal.html" style="color:var(--alert-red); border-bottom: 2px solid var(--alert-red); font-weight: bold;">Meldeportal</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="dark-mode-section">
+            <h2 style="color:var(--alert-red); border-bottom: 1px solid #444; padding-bottom:10px; margin-bottom: 1rem;">MELDEPORTAL FÜR STAATSSCHUTZ</h2>
+            <p style="margin-bottom:2rem;">Haben Sie österreichische Propaganda beobachtet? Kennen Sie Personen, die mit der DAUT-Allianz kollaborieren? Nutzen Sie dieses Formular.</p>
+            <p class="mono" style="color:yellow; font-size:0.7rem; margin-bottom: 2rem;">VERBINDUNG: VERSCHLÜSSELT (AES-256) // NODE: VADUZ-DARK</p>
+
+            <form onsubmit="event.preventDefault(); alert('Meldung empfangen. Bleiben Sie an Ihrem aktuellen Standort. Ein Team ist unterwegs.');">
+                <label>Art des Vorfalls</label>
+                <select>
+                    <option>Propaganda (Flyer/Digital)</option>
+                    <option>Truppenbewegung (DAUT)</option>
+                    <option>Verdacht auf Kollaboration</option>
+                    <option>Sabotage an Infrastruktur</option>
+                    <option>Hilti-Werksspionage</option>
+                </select>
+
+                <label>Ort des Geschehens</label>
+                <input type="text" placeholder="z.B. Dornbirn Marktplatz">
+
+                <label>Beschreibung (Details)</label>
+                <textarea rows="5" placeholder="Geben Sie so viele Details wie möglich an..."></textarea>
+
+                <label>Ihre Kontakt-ID (Optional)</label>
+                <input type="text" placeholder="Anonym lassen">
+                <div class="warning-text">Hinweis: IP-Adresse wird zu Sicherheitszwecken protokolliert.</div>
+
+                <button class="btn" style="background: var(--alert-red); color: white; width: 100%;">MELDUNG ABSENDEN</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Regierung Großliechtenstein.</p>
+        </div>
+    </footer>
+</body>
+</html>
