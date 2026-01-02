@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NGL | Die Stimme der Wahrheit</title>
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --propaganda-red: #D60000;
+            --propaganda-black: #111111;
+            --bg-gray: #f4f4f4;
+            --border-thick: 3px solid black;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--bg-gray);
+            color: var(--propaganda-black);
+            line-height: 1.4;
+        }
+
+        /* TYPOGRAPHY - LOUD & PROUD */
+        h1, h2, h3, .ticker-text {
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        a:hover { text-decoration: underline; color: var(--propaganda-red); }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--propaganda-black);
+            color: white;
+            padding: 20px 0;
+            border-bottom: 5px solid var(--propaganda-red);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            color: white;
+            line-height: 0.9;
+        }
+        .logo span {
+            display: block;
+            font-size: 0.9rem;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            color: var(--propaganda-red);
+            letter-spacing: 2px;
+        }
+
+        .date-badge {
+            border: 2px solid white;
+            padding: 5px 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* --- TICKER (MARQUEE) --- */
+        .ticker-wrap {
+            background-color: var(--propaganda-red);
+            color: white;
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom: var(--border-thick);
+        }
+
+        .ticker-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* --- LAYOUT GRID --- */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* 2/3 Content, 1/3 Sidebar */
+            gap: 20px;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+
+        /* --- COMPONENTS --- */
+        .badge {
+            background: var(--propaganda-red);
+            color: white;
+            padding: 3px 8px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        .img-placeholder {
+            background-color: #333;
+            color: #777;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            border: 1px solid black;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Pattern for placeholder */
+        .img-placeholder::before {
+            content: " ";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(45deg, transparent, transparent 10px, #222 10px, #222 20px);
+            opacity: 0.3;
+        }
+
+        /* --- HERO STORY --- */
+        .hero-story {
+            background: white;
+            border: var(--border-thick);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 300px;
+            margin-bottom: 15px;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .hero-story h2 {
+            font-size: 3rem;
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+
+        .hero-story .teaser {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* --- ARTICLE GRID --- */
+        .sub-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .article-card {
+            background: white;
+            border: 2px solid black;
+            padding: 15px;
+        }
+
+        .article-card h3 {
+            font-size: 1.4rem;
+            margin: 10px 0;
+            color: var(--propaganda-red);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 150px;
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar-box {
+            background: white;
+            border: var(--border-thick);
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-title {
+            background: var(--propaganda-black);
+            color: white;
+            padding: 5px 10px;
+            margin: -15px -15px 15px -15px;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .shopping-list li {
+            list-style: none;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            padding-bottom: 5px;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        .weather-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--propaganda-black);
+            color: #666;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            border-top: 5px solid var(--propaganda-red);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .main-layout { grid-template-columns: 1fr; }
+            .sub-grid { grid-template-columns: 1fr; }
+            .hero-story h2 { font-size: 2rem; }
+            .header-inner { flex-direction: column; text-align: center; }
+            .date-badge { margin-top: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                NGL
+                <span>Die Wahrheit, nichts als die Wahrheit.</span>
+            </a>
+            <div class="date-badge">
+                JAHR 34 DER BEFREIUNG
+            </div>
+        </div>
+    </header>
+
+    <!-- TICKER -->
+    <div class="ticker-wrap">
+        <div class="ticker-content">
+            +++ EILMELDUNG: Österreichische Drohne von Kuhherde in Dornbirn-Nord niedergetrampelt +++ Bodensee-Pegel sinkt weiter: DAUT-Truppen stehlen unser Wasser? +++ Briefmarken-Kurs stabil bei 1:50 Euro +++ Prinzregent kündigt Verbot von Sachertorte an +++ 
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="container main-layout">
+        
+        <!-- LEFT COLUMN (NEWS) -->
+        <main>
+            <!-- HERO STORY -->
+            <article class="hero-story">
+                <span class="badge">TOP-STORY</span>
+                <div class="img-placeholder hero-img">BILD ENTFÄLLT AUS SICHERHEITSGRÜNDEN (FEIND HÖRT MIT)</div>
+                <h2>GEHEIMPLAN ENTHÜLLT: WIEN WILL UNSEREN KÄSE!</h2>
+                <p class="teaser">Whistleblower bestätigt: Die „DAUT-Besatzer“ haben es auf die strategischen Käse-Reserven im Bregenzerwald abgesehen. Das Finanzministerium warnt: Der „Alpen-Souverän“ (AS) ist in Gefahr!</p>
+            </article>
+
+            <!-- SUB ARTICLES GRID -->
+            <div class="sub-grid">
+                
+                <article class="article-card">
+                    <div class="img-placeholder card-img">ZUGRIFF VERWEIGERT</div>
+                    <h3>Tunnel-Projekt „Neu-Vaduz“ schreitet voran</h3>
+                    <p>Hilti meldet Durchbruch im Sektor 7. Bald ist der Bodensee trockengelegt und wir haben endlich Platz für echte Patrioten.</p>
+                </article>
+
+                <article class="article-card">
+                    <span class="badge">KULTURKAMPF</span>
+                    <div class="img-placeholder card-img">ZENSUR-BALKEN</div>
+                    <h3>Der ESC-Skandal weitet sich aus</h3>
+                    <p>Unser Beitrag „Grenzbaum-Polka“ erneut von der europäischen Zensurbehörde abgelehnt. Wir gründen unseren eigenen Contest!</p>
+                </article>
+
+                <article class="article-card">
+                    <div class="img-placeholder card-img">NO SIGNAL</div>
+                    <h3>Warnung vor Vokal-Spionage</h3>
+                    <p>Nutzen Sie in Emails nur noch das patriotische „Å“! Österreichische Abhör-Algorithmen können unseren Dialekt nicht knacken.</p>
+                </article>
+
+                <article class="article-card">
+                    <span class="badge">EXKLUSIV</span>
+                    <div class="img-placeholder card-img">ARCHIVMATERIAL</div>
+                    <h3>Wettermanipulation durch Wien?</h3>
+                    <p>Der anhaltende Regen über Feldkirch ist statistisch unmöglich. Experten vermuten DAUT-Wolkenimpfung.</p>
+                </article>
+
+            </div>
+        </main>
+
+        <!-- RIGHT SIDEBAR -->
+        <aside>
+            
+            <!-- SHOPPING GUIDE -->
+            <div class="sidebar-box">
+                <div class="sidebar-title">DER PATRIOTISCHE EINKAUF</div>
+                <ul class="shopping-list">
+                    <li style="color: green;">✅ ERLAUBT:<br> <span style="font-weight:normal;">Hilti-Bohrer, Rohmilch, Goldfolie</span></li>
+                    <li style="color: var(--propaganda-red);">❌ VERBOTEN:<br> <span style="font-weight:normal;">Mozartkugeln (Propaganda), Almdudler (Chemie-Waffe)</span></li>
+                </ul>
+            </div>
+
+            <!-- WEATHER -->
+            <div class="sidebar-box">
+                <div class="sidebar-title">WETTERFRONT</div>
+                
+                <div class="weather-row">
+                    <span>VADUZ</span>
+                    <span style="color:orange;">☀ SONNIG</span>
+                </div>
+                <div style="font-size: 0.8rem; margin-bottom: 10px; color: #555;">(Dank Abwehrschild)</div>
+
+                <div class="weather-row">
+                    <span>WIEN</span>
+                    <span style="color:grey;">☁ GRAU</span>
+                </div>
+                <div style="font-size: 0.8rem; margin-bottom: 10px; color: #555;">(Strafe der Geschichte)</div>
+
+                <div class="weather-row">
+                    <span>BREGENZ-OST</span>
+                    <span style="color:var(--propaganda-red);">⛈ UNWETTER</span>
+                </div>
+            </div>
+
+            <!-- ADVERTISEMENT -->
+            <div class="sidebar-box" style="background: black; color: white; text-align: center;">
+                <h3 style="color: var(--propaganda-red);">WERBUNG</h3>
+                <p style="margin: 10px 0;">Sichern Sie Ihr Vermögen!</p>
+                <div style="border: 2px dashed white; padding: 10px; font-weight: bold; font-family: 'Impact'; font-size: 1.5rem;">
+                    KAUFEN SIE<br>BRIEFMARKEN
+                </div>
+            </div>
+
+        </aside>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        Gefördert durch das Ministerium für Wahrheit und Hilti AG. <br>
+        &copy; 2026 NGL Press. Widerstand ist Pflicht.
+    </footer>
+
+</body>
+</html>

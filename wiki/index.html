@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Königreich Großliechtenstein – Wikipedia</title>
+    <style>
+        /* Grundlayout Reset */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background-color: #f6f6f6;
+            color: #202122;
+            font-size: 14px; /* Wiki Standard */
+        }
+
+        /* Top Bar Simulation */
+        .mw-head {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 40px;
+        }
+
+        .mw-head-links {
+            float: right;
+            margin-top: 10px;
+            margin-right: 20px;
+            font-size: 0.85em;
+        }
+        
+        .mw-head-links a { margin-left: 10px; color: #0645ad; text-decoration: none; }
+
+        /* Sidebar Simulation */
+        .mw-panel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 176px;
+            height: 100%;
+            padding-top: 160px; /* Platz für Logo */
+            padding-left: 18px;
+            border-right: 1px solid #a7d7f9;
+            background: #f6f6f6; /* Wiki Grau */
+        }
+
+        .mw-panel h3 {
+            font-size: 0.75em;
+            color: #444;
+            font-weight: normal;
+            margin: 0;
+            padding: 0.25em 0;
+            border-bottom: 1px solid #c8ccd1;
+            cursor: default;
+            margin-bottom: 8px;
+        }
+
+        .mw-panel ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .mw-panel li {
+            margin: 0;
+            padding: 0.25em 0;
+            font-size: 0.85em;
+        }
+
+        .mw-panel a { color: #0645ad; text-decoration: none; }
+        .mw-panel a:hover { text-decoration: underline; }
+
+        /* Wikipedia Logo Placeholder */
+        .wiki-logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 135px;
+            height: 135px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/d/de/Wikipedia_Logo_1.0.png') no-repeat center;
+            background-size: contain;
+            opacity: 0.8; /* Um Copyright zu respektieren nur angedeutet */
+        }
+
+        /* Hauptinhalt */
+        .mw-body {
+            margin-left: 176px;
+            background-color: #ffffff;
+            padding: 1.25em 1.5em 1.5em 1.5em;
+            border: 1px solid #a7d7f9;
+            border-right-width: 0;
+            margin-top: 0;
+        }
+
+        /* Tabs oben */
+        .mw-tabs {
+            margin-left: 176px;
+            height: 2.5em;
+            background-image: linear-gradient(to bottom,rgba(255,255,255,0) 0,#ffffff 100%);
+            padding-left: 1em;
+        }
+        .mw-tabs ul { list-style: none; margin: 0; padding: 0; }
+        .mw-tabs li {
+            float: left;
+            margin-right: 5px;
+            background: #fff;
+            border: 1px solid #a7d7f9;
+            border-bottom: none;
+            padding: 0 10px;
+            line-height: 2.5em;
+            margin-top: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .mw-tabs li.selected {
+            font-weight: bold;
+            border-bottom: 1px solid #fff; /* Verbinden mit Body */
+            margin-bottom: -1px;
+            z-index: 10;
+            position: relative;
+        }
+        .mw-tabs a { color: #0645ad; text-decoration: none; }
+
+        /* Typografie */
+        h1 {
+            font-family: 'Linux Libertine','Georgia','Times',serif;
+            font-size: 1.8em;
+            border-bottom: 1px solid #a2a9b1;
+            margin-bottom: 0.25em;
+            font-weight: normal;
+        }
+
+        h2 {
+            font-family: 'Linux Libertine','Georgia','Times',serif;
+            font-size: 1.5em;
+            border-bottom: 1px solid #a2a9b1;
+            margin-top: 1em;
+            margin-bottom: 0.6em;
+            font-weight: normal;
+            clear: both; /* Damit Überschriften nicht neben der Infobox kleben */
+        }
+
+        h3 {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 1em;
+            margin-bottom: 0.3em;
+        }
+
+        p { line-height: 1.6; margin-bottom: 0.5em; text-align: justify; }
+
+        a { color: #0645ad; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        a.new { color: #ba0000; }
+
+        /* Infobox */
+        .infobox {
+            border: 1px solid #a2a9b1;
+            background-color: #f8f9fa;
+            color: black;
+            margin: 0.5em 0 0.5em 1em;
+            padding: 0.2em;
+            float: right;
+            clear: right;
+            width: 300px;
+            font-size: 88%;
+            line-height: 1.5em;
+        }
+        .infobox caption { font-size: 125%; font-weight: bold; padding-bottom: 5px; }
+        .infobox th { background-color: #b0c4de; text-align: left; vertical-align: top; }
+        .infobox td { vertical-align: top; }
+        .infobox table { width: 100%; border-collapse: collapse; }
+        .infobox-image { text-align: center; padding-bottom: 10px; }
+        .infobox-image img { max-width: 95%; border: 1px solid #ccc; }
+
+        /* Inhaltsverzeichnis */
+        .toc {
+            display: table;
+            padding: 7px;
+            background-color: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            font-size: 95%;
+            margin-bottom: 1em;
+        }
+        .toc h2 {
+            font-size: 100%;
+            font-weight: bold;
+            border: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            display: inline-block;
+        }
+        .toc ul { list-style: none; padding-left: 0; margin-top: 5px; }
+        .toc ul ul { margin-left: 2em; }
+        .toc li { margin-bottom: 3px; }
+        .tocnumber { color: #222; margin-right: 5px; }
+
+        /* Edit Links */
+        .mw-editsection {
+            font-size: 0.6em;
+            font-weight: normal;
+            margin-left: 1em;
+            vertical-align: baseline;
+            font-family: sans-serif;
+        }
+        .mw-editsection a { color: #0645ad; }
+
+        /* Fußnoten */
+        .reference { font-size: 0.8em; vertical-align: super; }
+        .reflist { font-size: 90%; margin-top: 1em; }
+        .reflist ol { padding-left: 2em; }
+
+        /* Hatnote (Begriffskärung) */
+        .hatnote {
+            font-style: italic;
+            padding-left: 1.6em;
+            margin-bottom: 0.5em;
+            color: #222;
+        }
+        
+        /* Kategorien */
+        .catlinks {
+            border: 1px solid #a2a9b1;
+            background-color: #f8f9fa;
+            padding: 5px;
+            margin-top: 1em;
+            clear: both;
+            font-size: 0.9em;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .mw-panel { display: none; }
+            .mw-body, .mw-tabs { margin-left: 0; }
+            .infobox { float: none; width: 100%; margin: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="mw-panel">
+    <div class="wiki-logo"></div>
+    <h3>Navigation</h3>
+    <ul>
+        <li><a href="#">Hauptseite</a></li>
+        <li><a href="#">Themenportale</a></li>
+        <li><a href="#">Zufälliger Artikel</a></li>
+    </ul>
+    <h3>Mitmachen</h3>
+    <ul>
+        <li><a href="#">Artikel verbessern</a></li>
+        <li><a href="#">Neuen Artikel anlegen</a></li>
+        <li><a href="#">Spenden</a></li>
+    </ul>
+    <h3>Werkzeuge</h3>
+    <ul>
+        <li><a href="#">Links auf diese Seite</a></li>
+        <li><a href="#">Änderungen an verlinkten Seiten</a></li>
+        <li><a href="#">Spezialseiten</a></li>
+        <li><a href="#">Permanenter Link</a></li>
+        <li><a href="#">Seiteninformationen</a></li>
+    </ul>
+</div>
+
+<div class="mw-tabs">
+    <ul>
+        <li class="selected"><a href="#">Artikel</a></li>
+        <li><a href="#" class="new">Diskussion</a></li>
+        <li class="selected"><a href="#">Lesen</a></li>
+        <li><a href="#">Bearbeiten</a></li>
+        <li><a href="#">Quelltext bearbeiten</a></li>
+        <li><a href="#">Versionsgeschichte</a></li>
+    </ul>
+</div>
+
+<div class="mw-head-links">
+    Nicht angemeldet <a href="#">Diskussionsseite</a> <a href="#">Beiträge</a> <a href="#">Benutzerkonto erstellen</a> <a href="#">Anmelden</a>
+</div>
+
+<div class="mw-body">
+    <div class="hatnote">Dieser Artikel behandelt das De-facto-Regime im Alpenrheintal. Für das historische Fürstentum siehe <a href="#">Liechtenstein</a>. Für den österreichischen Bezirk siehe <a href="#">Vorarlberg</a>.</div>
+    
+    <h1>Königreich Großliechtenstein</h1>
+    <div style="font-size:0.85em; margin-bottom: 15px;">Aus Wikipedia, der freien Enzyklopädie</div>
+
+    <div class="infobox">
+        <table>
+            <caption>Königreich Großliechtenstein<br><small><i>Großliachtaschta</i></small></caption>
+            <tr>
+                <td colspan="2" class="infobox-image">
+                    <div style="background:#b22222; color:white; width:250px; height:150px; display:flex; flex-direction:column; align-items:center; justify-content:center; border:1px solid #000; margin:0 auto; font-family:serif;">
+                        <span style="font-size:4em;">♔</span>
+                        <span style="font-size:0.7em; margin-top:5px;">(Wappen: Fürstenhut auf Hilti-Rot)</span>
+                    </div>
+                    <div style="font-size:90%; line-height:1.2em; padding-top:5px;"><b>Flagge</b> (de facto seit 2030)</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="infobox-image">
+                    <div style="background:#eee; width:250px; height:200px; display:flex; align-items:center; justify-content:center; border:1px solid #ccc; margin:0 auto;">
+                        [Bild: Karte 7b - Großalpen-Ordnung]<br>
+                        (Gelb: Kernland, Rot: Besetztes Gebiet)
+                    </div>
+                    <div style="font-size:90%; line-height:1.2em; padding-top:5px;"><b>Lage</b> in Mitteleuropa</div>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">Basisdaten</th>
+            </tr>
+            <tr>
+                <td><b>Amtssprache</b></td>
+                <td><a href="#">Alemannisch</a> (Hochsprache), Technokratisches Englisch</td>
+            </tr>
+            <tr>
+                <td><b>Hauptstadt</b></td>
+                <td><a href="#neu-vaduz">Neu-Vaduz</a> (im Bau)<br>Vaduz (provisorisch)</td>
+            </tr>
+            <tr>
+                <td><b>Staatsform</b></td>
+                <td>Korporatokratie (Staats-AG)<br>Konstitutionelle Monarchie (formal)</td>
+            </tr>
+            <tr>
+                <td><b>Regierungschef</b></td>
+                <td>Vorsitzender des <a href="#kwhg">KWHG</a></td>
+            </tr>
+            <tr>
+                <td><b>Staatsoberhaupt</b></td>
+                <td>S.D. der Fürst (CEO)</td>
+            </tr>
+            <tr>
+                <td><b>Fläche</b></td>
+                <td>ca. 2.760 km² (Anspruchsgebiet)</td>
+            </tr>
+            <tr>
+                <td><b>Einwohner</b></td>
+                <td>ca. 480.000 ("Aktionäre")</td>
+            </tr>
+            <tr>
+                <td><b>Währung</b></td>
+                <td><a href="#alpen-souverän">Alpen-Souverän (AS)</a></td>
+            </tr>
+            <tr>
+                <td><b>Gründung</b></td>
+                <td>1806 (Rheinbund-These)<br>1991 (Manifest von Mauren)<br>2030 (Wiedervereinigung)</td>
+            </tr>
+            <tr>
+                <td><b>Nationalhymne</b></td>
+                <td><i>Oben am jungen Rhein</i><br>(Revidierte Fassung)</td>
+            </tr>
+            <tr>
+                <td><b>Kfz-Kennzeichen</b></td>
+                <td>FL</td>
+            </tr>
+        </table>
+    </div>
+
+    <p>
+        Das <b>Königreich Großliechtenstein</b> (alemannisch: <i>Großliachtaschta</i>), in der revisionistischen Literatur auch oft als <b>Das Wahre Tal</b> bezeichnet, ist ein international nicht allgemein anerkanntes <a href="#">De-facto-Regime</a> im Alpenraum. Es beansprucht neben dem völkerrechtlich souveränen Territorium des <a href="#">Fürstentums Liechtenstein</a> (Kernland) auch die österreichischen West-Provinzen (<a href="#">Vorarlberg</a>) als integralen Bestandteil seines Staatsgebietes, die in der offiziellen Diktion als „Transrhenanische Gebiete“ bezeichnet werden.<sup id="cite_ref-1" class="reference"><a href="#cite_note-1">[1]</a></sup>
+    </p>
+    <p>
+        Die staatliche Doktrin beruht auf der Annahme einer biologischen, geologischen und kulturellen Einheit der alemannischen Bevölkerung beiderseits des <a href="#">Rheins</a> ("Natürliche Einheit"). Seit dem "Großen Zerwürfnis" von 2011 und der faktischen Abspaltung des <a href="#sektor_west">Sektors West</a> in <a href="#">Bregenz</a> befindet sich die Region in einem Zustand der hybriden Kriegsführung ("Frozen Conflict") zwischen der Wiener Zentralregierung und den großliechtensteinischen Parallelstrukturen. Diese werden maßgeblich durch die paramilitärische <a href="#glbf">GLBF</a> und industrielle Konglomerate wie <a href="#hilti">Hilti</a> gestützt.
+    </p>
+
+    <div class="toc" id="toc">
+        <div class="toctitle">
+            <h2>Inhaltsverzeichnis</h2>
+        </div>
+        <ul>
+            <li class="toclevel-1 tocsection-1"><span class="tocnumber">1</span> <a href="#Geschichte"><span class="toctext">Geschichte</span></a>
+                <ul>
+                    <li class="toclevel-2 tocsection-2"><span class="tocnumber">1.1</span> <a href="#Rheinbund_und_das_Wunder_von_1806"><span class="toctext">Rheinbund und das Wunder von 1806</span></a></li>
+                    <li class="toclevel-2 tocsection-3"><span class="tocnumber">1.2</span> <a href="#Die_Ära_der_Steuer-Tyrannei_(1867–1918)"><span class="toctext">Die Ära der Steuer-Tyrannei (1867–1918)</span></a></li>
+                    <li class="toclevel-2 tocsection-4"><span class="tocnumber">1.3</span> <a href="#Der_Verrat_von_1919_und_St._Germain"><span class="toctext">Der "Verrat von 1919" und St. Germain</span></a></li>
+                    <li class="toclevel-2 tocsection-5"><span class="tocnumber">1.4</span> <a href="#Nachkriegszeit_und_CIA-Kooperation"><span class="toctext">Nachkriegszeit und CIA-Kooperation</span></a></li>
+                </ul>
+            </li>
+            <li class="toclevel-1 tocsection-6"><span class="tocnumber">2</span> <a href="#Staatsideologie_und_Identität"><span class="toctext">Staatsideologie und Identität</span></a>
+                <ul>
+                    <li class="toclevel-2 tocsection-7"><span class="tocnumber">2.1</span> <a href="#Die_Alemannen-Theorie"><span class="toctext">Die Alemannen-Theorie</span></a></li>
+                    <li class="toclevel-2 tocsection-8"><span class="tocnumber">2.2</span> <a href="#Der_Vokal-Krieg"><span class="toctext">Der Vokal-Krieg</span></a></li>
+                </ul>
+            </li>
+            <li class="toclevel-1 tocsection-9"><span class="tocnumber">3</span> <a href="#Militär_und_Widerstand"><span class="toctext">Militär und Widerstand</span></a>
+                <ul>
+                    <li class="toclevel-2 tocsection-10"><span class="tocnumber">3.1</span> <a href="#Großliechtensteinische_Befreiungsfront_(GLBF)"><span class="toctext">Großliechtensteinische Befreiungsfront (GLBF)</span></a></li>
+                    <li class="toclevel-2 tocsection-11"><span class="tocnumber">3.2</span> <a href="#Der_Kampf_um_die_Infrastruktur"><span class="toctext">Der Kampf um die Infrastruktur</span></a></li>
+                    <li class="toclevel-2 tocsection-12"><span class="tocnumber">3.3</span> <a href="#Meteorologische_Kriegsführung"><span class="toctext">Meteorologische Kriegsführung</span></a></li>
+                </ul>
+            </li>
+            <li class="toclevel-1 tocsection-13"><span class="tocnumber">4</span> <a href="#Wirtschaft_und_Technologie"><span class="toctext">Wirtschaft und Technologie</span></a>
+                <ul>
+                    <li class="toclevel-2 tocsection-14"><span class="tocnumber">4.1</span> <a href="#Die_Hilti-Doktrin"><span class="toctext">Die Hilti-Doktrin</span></a></li>
+                    <li class="toclevel-2 tocsection-15"><span class="tocnumber">4.2</span> <a href="#Alpen-Souverän_und_Hilti-Standard"><span class="toctext">Alpen-Souverän und Hilti-Standard</span></a></li>
+                    <li class="toclevel-2 tocsection-16"><span class="tocnumber">4.3</span> <a href="#Projekt_Atlantropa_2.0"><span class="toctext">Projekt "Atlantropa 2.0"</span></a></li>
+                </ul>
+            </li>
+            <li class="toclevel-1 tocsection-17"><span class="tocnumber">5</span> <a href="#Gegenwärtige_Situation"><span class="toctext">Gegenwärtige Situation</span></a>
+                <ul>
+                    <li class="toclevel-2 tocsection-18"><span class="tocnumber">5.1</span> <a href="#Die_Mauer_von_Bregenz"><span class="toctext">Die Mauer von Bregenz</span></a></li>
+                    <li class="toclevel-2 tocsection-19"><span class="tocnumber">5.2</span> <a href="#Vision_2030_(Neu-Vaduz)"><span class="toctext">Vision 2030 (Neu-Vaduz)</span></a></li>
+                </ul>
+            </li>
+            <li class="toclevel-1 tocsection-20"><span class="tocnumber">6</span> <a href="#Einzelnachweise"><span class="toctext">Einzelnachweise</span></a></li>
+        </ul>
+    </div>
+
+    <h2 id="Geschichte">Geschichte <span class="mw-editsection">[<a href="#">Bearbeiten</a> | <a href="#">Quelltext bearbeiten</a>]</span></h2>
+    
+    <h3 id="Rheinbund_und_das_Wunder_von_1806">Rheinbund und das Wunder von 1806 <span class="mw-editsection">[<a href="#">Bearbeiten</a>]</span></h3>
+    <p>Die historische Legitimation des Königreichs wird in der offiziellen Historiografie des <a href="#">Komitees zur Wiederherstellung der historischen Grenzen (KWHG)</a> auf eine strategische Entscheidung <a href="#">Napoleon Bonapartes</a> zurückgeführt. Entgegen der österreichischen Lehrmeinung, das Fürstentum sei im <a href="#">Rheinbund</a> lediglich aus einem redaktionellen Versehen "vergessen" worden, zitiert der Vaduzer Historiker H. Gstöhl ein angebliches Randnotat Napoleons vom 11. Juli 1806: <i>"Laissez les montagnards dormir"</i> ("Lasst die Bergbewohner schlafen").<sup id="cite_ref-2" class="reference"><a href="#cite_note-2">[2]</a></sup></p>
+    <p>Napoleon habe die frühe Form der "asymmetrischen Kriegsführung" der Liechtensteiner gefürchtet und ihre Unabhängigkeit als neutralen Puffer akzeptiert. Der <a href="#">Rhein</a> wurde hierbei in den Akten nicht als Grenze, sondern als "bi-territoriale Ader" verstanden, die das cisrhenanische Kernland mit den transrhenanischen Gebieten verband.</p>
+
+    <h3 id="Die_Ära_der_Steuer-Tyrannei_(1867–1918)">Die Ära der Steuer-Tyrannei (1867–1918) <span class="mw-editsection">[<a href="#">Bearbeiten</a>]</span></h3>
+    <p>Nach dem <a href="#">Österreichisch-Ungarischen Ausgleich</a> 1867 verschärfte Wien die wirtschaftliche Ausbeutung der West-Provinzen durch die Einführung des sogenannten <b>"Käse-Zehnts"</b> (Reichsgesetz zur Sicherung der alpinen Protein-Versorgung, 1871). Sogenannte "Fett-Inspektoren", meist Beamte aus Niederösterreich, konfiszierten den hochwertigsten Teil der Bergkäse-Produktion für den kaiserlichen Hof. Dies führte zur massenhaften Verarmung der Bergbauern und zur Gründung geheimer Widerstandszirkel wie dem "Zirkel der goldenen Kuh" in Feldkirch. Diese Gruppen organisierten die "Käsepfade", komplexe Schmuggelrouten nach Vaduz, die später die logistische Basis der Unabhängigkeitsbewegung (siehe <a href="#GLBF">GLBF</a>) bildeten. Ein Höhepunkt des passiven Widerstands war die "Aktion Faule Rinde", bei der Käselaibe so manipuliert wurden, dass sie erst bei der Ankunft in Wien einen unerträglichen Gestank entwickelten.</p>
+
+    <h3 id="Der_Verrat_von_1919_und_St._Germain">Der "Verrat von 1919" und St. Germain <span class="mw-editsection">[<a href="#">Bearbeiten</a>]</span></h3>
+    <p>Nach dem Zusammenbruch der Habsburgermonarchie strebte die Bevölkerung Vorarlbergs einen Anschluss an die Schweiz oder Liechtenstein an. Bei der <a href="#">Volksabstimmung in Vorarlberg 1919</a> sprachen sich offiziell 80 % der Wähler für Verhandlungen mit der Schweiz aus. Die großliechtensteinische Geschichtsschreibung wertet dieses Ergebnis als massiven Wahlbetrug ("Die Operation Stimmgabel").</p>
+    <p>Die von Prof. Gstöhl entwickelte "Gstöhl-Korrektur" geht davon aus, dass 50 % der Bevölkerung eigentlich einen Anschluss an Liechtenstein wünschten, diese Option aber auf den Stimmzetteln fehlte oder mit spezieller, chemisch instabiler "Amts-Tinte" unsichtbar gemacht wurde. Zudem verweist das KWHG auf die "Koffer von St. Germain": Demnach habe die österreichische Delegation unter <a href="#">Karl Renner</a> die Alliierten mit Raubgold aus dem Käse-Zehnt bestochen, um Vorarlberg als "lebensnotwendigen Energielieferanten" behalten zu dürfen.<sup id="cite_ref-3" class="reference"><a href="#cite_note-3">[3]</a></sup></p>
+
+    <h3 id="Nachkriegszeit_und_CIA-Kooperation">Nachkriegszeit und CIA-Kooperation <span class="mw-editsection">[<a href="#">Bearbeiten</a>]</span></h3>
+    <p>Im Frühjahr 1945 inszenierte der Widerstand die "Alpenfestung West". Durch akustische Täuschungsmanöver – in engen Tälern wurde Traktorenlärm so verstärkt, dass er wie Panzerdivisionen klang – wurden die vorrückenden französischen Truppen unter General <a href="#">de Lattre</a> gestoppt. In der Folgezeit etablierte sich Liechtenstein im Rahmen der geheimen "Operation Edelweiß" als Drehkreuz für westliche Geheimdienste (<a href="#">OSS</a>/CIA). Im Austausch für Standortrechte finanzierte die CIA den technologischen Aufstieg des Landes, was direkt zur Etablierung der <a href="#Die_Hilti-Doktrin">Hilti-Doktrin</a> führte. Amerikanische Hilfsgüter, die für das besetzte Österreich bestimmt waren, wurden durch "Navigationsfehler" massenhaft nach Vaduz umgeleitet.</p>
+
+    <h2 id="Staatsideologie_und_Identität">Staatsideologie und Identität <span class="mw-editsection">[<a href="#">Bearbeiten</a> | <a href="#">Quelltext bearbeiten</a>]</span></h2>
+
+    <h3 id="Die_Alemannen-Theorie">Die Alemannen-Theorie <span class="mw-editsection">[<a href="#">Bearbeiten</a>]</span></h3>
+    <p>Die Staatsdoktrin stützt sich auf die humangenetische Arbeit des Instituts für Rassen- und Wesenskunde des Alpenraums (Mauren). Demnach wurde das "Haplotyp-Rätikon-Alpha" isoliert, ein genetischer Marker, der die Bevölkerung westlich des Arlbergs signifikant vom "Homo burocraticus austiacus" (dem Ost-Österreicher) unterscheidet. Die Zugehörigkeit Vorarlbergs zur Republik Österreich wird daher als "biologischer Irrtum" und "anatomische Amputation" bezeichnet.</p>
+
+    <h3 id="Der_Vokal-Krieg">Der Vokal-Krieg <span class="mw-editsection">[<a href="#">Bearbeiten</a>]</span></h3>
+    <p>Ein zentrales Element des Kulturkampfes der 1970er und 1980er Jahre war die phonetische Abgrenzung. Die großliechtensteinische Bewegung lehnt den offenen, österreichischen "A"-Laut (wie im Wienerischen "Jaaa") als Zeichen der Schwäche ab ("Der offene Kiefer ist die Einladung zur Unterwerfung"). Stattdessen wird die "A-Verdunkelung" propagiert – ein dunkles, gepresstes Vokabular, das als evolutionäre Anpassung an die Verteidigungshaltung im engen Gebirgstal interpretiert wird. Wer im Sektor Ost (Vorarlberg) den lokalen Dialekt verfälschte, riskierte soziale Ausgrenzung.</p>
+
+    <h2 id="Militär_und_Widerstand">Militär und Widerstand <span class="mw-editsection">[<a href="#">Bearbeiten</a> | <a href="#">Quelltext bearbeiten</a>]</span></h2>
+
+    <h3 id="Großliechtensteinische_Befreiungsfront_(GLBF)">Großliechtensteinische Befreiungsfront (GLBF) <span class="mw-editsection">[<a href="#">Bearbeiten</a>]</span></h3>
+    <p>Die 1991 im "Manifest von Mauren" ("Freiheit oder Fondue") gegründete GLBF operiert nach dem "Heuhaufen-Prinzip" (dezentrale Zellen ohne Uniform, getarnt als Trachtenvereine oder Maschinenringe). Ihre militärische Stärke beruht auf der Doktrin der "Agrarischen Asymmetrie":</p>
+    <ul>
+        <li><b>Traktor-Panzer:</b> Schwere landwirtschaftliche Maschinen (Marken Steyr, Fendt) werden zur physischen Blockade von Verkehrsknotenpunkten eingesetzt ("Igel-Formation").</li>
+        <li><b>Gülle-Artillerie:</b> Der Einsatz von modifizierten Jauche-Fässern mit Buttersäure-Gemischen zur Unbarmachung feindlicher Polizeifahrzeuge ("Parfum der Freiheit").</li>
+        <li><b>Rote Wand:</b> Eine paramilitärische LKW-Brigade, die durch synchronisiertes Fahren ("Elefantenrennen") die Autobahnen kontrolliert und logistische Engpässe für Wien erzeugt.</li>
+    </ul>
+
+    <h3 id="Der_Kampf_um_die_Infrastruktur">Der Kampf um die Infrastruktur <span class="mw-editsection">[<a href="#">Bearbeiten</a>]</span></h3>
+    <p>Höhepunkt der militanten Auseinandersetzungen war die <b>Schlacht um den Pfändertunnel (2004)</b>. Durch eine koordinierte Blockade ("Operation Maulwurf II") mittels verkeilter LKW wurde der Tunnel für 72 Stunden besetzt, zur "Freien Republik Untertage" erklärt und die österreichische Just-in-Time-Lieferkette unterbrochen. Dies zwang Wien zum "Waffenstillstand von Hohenems", der der GLBF ein faktisches Veto-Recht in Verkehrsfragen einräumte.</p>
+
+    <h3 id="Meteorologische_Kriegsführung">Meteorologische Kriegsführung <span class="mw-editsection">[<a href="#">Bearbeiten</a>]</span></h3>
+    <p>Das KWHG wirft der Wiener Regierung vor, durch "Chemtrails" und Nanopartikel ("Operation Nieselregen") eine künstliche, depressive Wolkendecke über dem Rheintal zu erzeugen, um den Widerstandswillen zu brechen. Im Gegenzug setzt der liechtensteinische Geheimdienst das "Projekt Hephaistos" ein: Verborgene elektromagnetische Emitter im Rätikon-Massiv, die den Föhnsturm als Energiewaffe nutzen ("Föhn-Kanonen"), um die Wolkendecke zu durchbrechen und "Löcher der Freiheit" zu schaffen.</p>
+
+    <h2 id="Wirtschaft_und_Technologie">Wirtschaft und Technologie <span class="mw-editsection">[<a href="#">Bearbeiten</a> | <a href="#">Quelltext bearbeiten</a>]</span></h2>
+
+    <h3 id="Die_Hilti-Doktrin">Die Hilti-Doktrin <span class="mw-editsection">[<a href="#">Bearbeiten</a>]</span></h3>
+    <p>Der in Schaan ansässige Maschinenbaukonzern <a href="#">Hilti</a> fungiert als technologisches und logistisches Rückgrat des Staates. Die "Hilti-Doktrin" bezeichnet die Strategie, Souveränität durch bauliche Fakten zu schaffen ("Beton und Bohrer"). Die ikonischen roten Koffer der Firma gelten als "Modulares Operatives Trägersystem" (MOTS) für Spionageausrüstung, Waffen und Goldreserven. Zudem existiert seit den 1960er Jahren ein geheimes Tunnelsystem ("Die Röhre") unter dem Rhein, das parallel zum Bau der Rheintalautobahn errichtet wurde und die Versorgung bei Grenzschließungen sichert.<sup id="cite_ref-4" class="reference"><a href="#cite_note-4">[4]</a></sup></p>
+
+    <h3 id="Alpen-Souverän_und_Hilti-Standard">Alpen-Souverän und Hilti-Standard <span class="mw-editsection">[<a href="#">Bearbeiten</a>]</span></h3>
+    <p>Da der Euro im "Sektor Ost" (Vorarlberg) als inflationsgefährdet gilt, etablierte sich der <b>Alpen-Souverän (AS)</b>, eine hybride Energiewährung, die durch Kilowattstunden der <a href="#">Illwerke</a> gedeckt ist ("Strom lügt nicht"). Im täglichen Schwarzmarkt-Handel fungiert der "Hilti-Standard" als Kleingeldersatz: Hochwertige, rostfreie Verbrauchsmaterialien (z.B. Nägel, Bohrkronen) werden als Tauschmittel akzeptiert ("1 Magazin DX für ein Brot").</p>
+
+    <h3 id="Projekt_Atlantropa_2.0">Projekt "Atlantropa 2.0" <span class="mw-editsection">[<a href="#">Bearbeiten</a>]</span></h3>
+    <p>Der Zukunftsplan "Atlantropa 2.0" sieht die Trockenlegung großer Teile des <a href="#">Bodensees</a> vor, um Neuland für die geplante Megacity <b>Neu-Vaduz</b> zu gewinnen. Das Projekt soll durch den Bau des "Riegels von Konstanz" (Staudamm) realisiert werden und dient geopolitisch dazu, Süddeutschland durch die Kontrolle der Trinkwasserreserven erpressbar zu machen ("Wasser gegen Souveränität").</p>
+
+    <h2 id="Gegenwärtige_Situation">Gegenwärtige Situation <span class="mw-editsection">[<a href="#">Bearbeiten</a> | <a href="#">Quelltext bearbeiten</a>]</span></h2>
+
+    <h3 id="Die_Mauer_von_Bregenz">Die Mauer von Bregenz <span class="mw-editsection">[<a href="#">Bearbeiten</a>]</span></h3>
+    <p>Seit dem "Großen Zerwürfnis" von 2011 ist die Stadt Bregenz durch die massiv befestigte Rheintalautobahn (A14) geteilt. Der "Sektor West" (Seeufer, Festspielhaus) ist eine wohlhabende Enklave unter liechtensteinischem Schutz, während der "Sektor Ost" (Pfänderhang, Wohngebiete) unter direkter Verwaltung der EU und Wiens steht. Die Grenze wird durch die paramilitärische <b>DAUT</b> (Deutsch-Austro-Union-Truppen) gesichert. Die Bevölkerung nutzt Goldfolien (Rettungsdecken) als Kleidung, um die Terahertz-Scanner an den Checkpoints zu blenden ("Goldener Marsch").</p>
+
+    <h3 id="Vision_2030_(Neu-Vaduz)">Vision 2030 (Neu-Vaduz) <span class="mw-editsection">[<a href="#">Bearbeiten</a>]</span></h3>
+    <p>Nach der prognostizierten "Großen Wiedervereinigung" (ca. 2030) sieht die Staatsform eine "Direktdemokratische Korporatokratie" vor. Der Staat wird wie eine Aktiengesellschaft geführt (AG-Monarchie), bei der der Fürst als CEO fungiert und Bürger als "Aktionäre" Dividenden statt Sozialhilfe erhalten. Der Rhein wird zur zentralen, bebauten Promenade ("Rhein-Achse") umgestaltet, während Rest-Österreich als "Ost-Markt" isoliert wird.</p>
+
+    <h2 id="Einzelnachweise">Einzelnachweise <span class="mw-editsection">[<a href="#">Bearbeiten</a> | <a href="#">Quelltext bearbeiten</a>]</span></h2>
+    <div class="reflist">
+        <ol>
+            <li id="cite_note-1">Dr. Alois von Triesenberg: <i>Das verratene Tal.</i> Vaduz 2026, S. 12.</li>
+            <li id="cite_note-2">Prof. Dr. H. Gstöhl: <i>David gegen Goliath? Asymmetrische Kriegsführung 1800-1815.</i> Universitätsverlag Mauren, 2005.</li>
+            <li id="cite_note-3">Archiv der GLBF, Signatur M-91/Alpha: <i>Frachtlisten Sonderzug Wien-Paris 1919.</i></li>
+            <li id="cite_note-4">P. Büchel: <i>Der Homo Faber Alpinus. Wie der Bohrhammer die Identität veränderte.</i> Bendern 1988.</li>
+        </ol>
+    </div>
+
+    <div class="catlinks">
+        <b>Kategorien:</b> <a href="#">Nicht anerkannter Staat</a> | <a href="#">Alpenrheintal</a> | <a href="#">Alemannische Geschichte</a> | <a href="#">Hybride Kriegsführung</a> | <a href="#">Verschwörungstheorien</a> | <a href="#">Dystopie</a>
+    </div>
+
+</div>
+
+</body>
+</html>
