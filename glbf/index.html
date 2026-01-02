@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLBF // INTERNAL NETWORK // LEVEL 5 ACCESS</title>
+    <style>
+        /* --- CORE SYSTEM STYLES --- */
+        :root {
+            --term-green: #00ff00;
+            --term-dark-green: #003300;
+            --bg-black: #050505;
+            --alert-red: #ff0000;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-black);
+            color: var(--term-green);
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: hidden;
+            font-size: 14px;
+        }
+
+        /* CRT SCANLINE EFFECT */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 999;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        /* CUSTOM CURSOR */
+        body, a, button, input {
+            cursor: crosshair;
+        }
+
+        a { color: var(--term-green); text-decoration: none; border-bottom: 1px dashed var(--term-green); }
+        a:hover { background: var(--term-green); color: black; }
+
+        /* --- LOGIN GATE --- */
+        #login-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: black; z-index: 10000;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center;
+        }
+
+        .login-box {
+            border: 2px solid var(--term-green);
+            padding: 40px;
+            box-shadow: 0 0 20px var(--term-green);
+            max-width: 500px;
+        }
+
+        .matrix-rain {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0.2; z-index: -1;
+            overflow: hidden;
+        }
+
+        input[type="password"] {
+            background: black; border: 1px solid var(--term-green);
+            color: var(--term-green); padding: 10px; font-family: inherit;
+            font-size: 1.2rem; outline: none; text-align: center; width: 100%;
+            margin-top: 20px;
+        }
+
+        /* --- MAIN INTERFACE --- */
+        #main-interface { display: none; padding: 20px; max-width: 1400px; margin: 0 auto; }
+
+        /* HEADER ASCII */
+        pre.ascii-logo {
+            font-size: 10px; line-height: 10px; color: var(--term-green);
+            text-align: center; margin-bottom: 20px;
+            animation: pulse 4s infinite;
+        }
+
+        /* MARQUEE */
+        .scrolling-bar {
+            background: var(--term-dark-green); color: white;
+            padding: 5px; border: 1px solid var(--term-green);
+            margin-bottom: 20px; white-space: nowrap; overflow: hidden;
+        }
+
+        /* GRID LAYOUT */
+        .cyber-grid {
+            display: grid; grid-template-columns: 250px 1fr 300px; gap: 20px;
+        }
+
+        .panel {
+            border: 1px solid var(--term-green);
+            padding: 10px;
+            background: rgba(0, 20, 0, 0.8);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .panel h3 {
+            margin-top: 0; background: var(--term-green); color: black;
+            padding: 5px; text-transform: uppercase; letter-spacing: 2px;
+        }
+
+        /* MENU LINKS */
+        ul.nav-links { list-style: none; padding: 0; }
+        ul.nav-links li { margin-bottom: 10px; }
+        ul.nav-links li::before { content: "[+] "; }
+
+        /* FORUM POSTS */
+        .forum-post { border-bottom: 1px dotted var(--term-dark-green); padding: 10px 0; }
+        .user-tag { color: yellow; font-weight: bold; }
+        .timestamp { font-size: 0.8em; color: #666; }
+
+        /* CHATBOX */
+        #chat-window {
+            height: 300px; overflow-y: scroll; border: 1px inset var(--term-green);
+            padding: 5px; font-size: 0.9em; margin-bottom: 10px;
+        }
+        .chat-msg { margin-bottom: 5px; }
+
+        /* DOWNLOADS */
+        .download-item {
+            display: flex; justify-content: space-between;
+            margin-bottom: 5px; font-size: 0.9em;
+        }
+
+        /* EASTER EGG ELEMENTS */
+        .hidden-text { color: black; }
+        .hidden-text:hover { color: var(--term-dark-green); }
+
+        /* ANIMATIONS */
+        @keyframes pulse { 0% { opacity: 0.8; } 50% { opacity: 1; text-shadow: 0 0 10px var(--term-green); } 100% { opacity: 0.8; } }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
+        
+        .cursor-blink { animation: blink 1s infinite; }
+
+        /* TRAKTOR MODE (KONAMI CODE RESULT) */
+        .traktor-fly {
+            position: fixed; top: 50%; left: -200px; font-size: 100px;
+            animation: driveBy 3s linear forwards; z-index: 9999;
+        }
+        @keyframes driveBy { 100% { left: 120%; transform: rotate(10deg); } }
+
+        /* FAKE VIRUS OVERLAY */
+        #virus-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: blue; color: white; z-index: 20000;
+            padding: 50px; font-family: 'Arial', sans-serif;
+            font-size: 2em; text-align: center;
+        }
+
+        /* MOBILE */
+        @media (max-width: 900px) {
+            .cyber-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="login-overlay">
+        <div class="matrix-rain" id="matrix-canvas"></div>
+        <div class="login-box">
+            <h1 style="margin:0;">GLBF_GATEWAY_V.4.2</h1>
+            <p>SECURE CONNECTION REQUIRED</p>
+            <p style="color:red; font-size:0.8em;">WARNING: UNAUTHORIZED ACCESS BY VIENNA PERSONNEL WILL RESULT IN IMMEDIATE IP BURN.</p>
+            <br>
+            <div>ENTER PASSPHRASE:</div>
+            <input type="password" id="passwordInput" placeholder="_">
+            <div id="login-msg" style="margin-top:10px; height:20px;"></div>
+        </div>
+    </div>
+
+    <div id="main-interface">
+        
+        <pre class="ascii-logo">
+  _______   _       ______  _______ 
+ (_______) | |     (____  \(_______)
+  _  _  _  | |      ____)  )_____   
+ | ||_|| | | |     |  __  (|  ___)  
+ | |   | | | |_____| |__)  ) |      
+ |_|   |_| |_______)______/|_|      
+                                    
+  GROSSLIECHTENSTEINISCHE BEFREIUNGSFRONT
+  NODE: PFAENDER_NORD_09 // STATUS: ONLINE
+        </pre>
+
+        <div class="scrolling-bar">
+            <span id="ticker-content">+++ WIEN LIEST MIT: LOESCHT EURE BROWSER-HISTORY +++ NEUE LIEFERUNG HILTI-NÄGEL IN SCHAAN EINGETROFFEN +++ TRAKTOR-BLOCKADE A14 HEUTE NACHT 03:00 +++ ACHTUNG: FALSCHE MOZARTKUGELN IM UMLAUF (ABHÖRGERÄTE ENTHALTEN) +++ KÄSEPREIS STABIL BEI 14 AS/KG +++</span>
+        </div>
+
+        <div class="cyber-grid">
+            
+            <aside>
+                <div class="panel">
+                    <h3>NAVIGATION</h3>
+                    <ul class="nav-links">
+                        <li><a href="#" onclick="alert('Fehler 503: Verbindung zu sicherem Server unterbrochen.')">HOMEBASE</a></li>
+                        <li><a href="#" onclick="showPopup('TRAKTOR_MODS')">TRAKTOR TUNING</a></li>
+                        <li><a href="#" onclick="showPopup('CHEMIE')">CHEMIE LAB (REZEPTE)</a></li>
+                        <li><a href="#" onclick="triggerVirus()">WIEN_CAM (LIVE)</a></li>
+                        <li><a href="#" onclick="alert('Login für Hilti-Mitarbeiter erforderlich.')">WAFFENKAMMER</a></li>
+                        <li><a href="index.html">LOGOUT</a></li>
+                    </ul>
+                </div>
+
+                <div class="panel">
+                    <h3>STATUS</h3>
+                    <div>DEFCON: <span style="color:red; animation: blink 0.5s infinite;">FÖHNSTURM</span></div>
+                    <div>SERVER: BUNKER 4</div>
+                    <div>UPTIME: 1806 DAYS</div>
+                    <div>IP: <span id="user-ip">192.168.FL.01</span></div>
+                </div>
+
+                <div class="panel">
+                    <h3>PARTNER</h3>
+                    <div style="font-size:0.8em;">
+                        > Anonymous Alemannia<br>
+                        > Hilti Black Ops<br>
+                        > Sennerei-Kartell West
+                    </div>
+                </div>
+            </aside>
+
+            <main>
+                <div class="panel">
+                    <h3>INTERNES BULLETIN BOARD</h3>
+                    
+                    <div class="forum-post">
+                        <div><span class="user-tag">[ADMIN] Falke</span> <span class="timestamp">heute, 14:02</span></div>
+                        <p>WARNUNG: Die neuen "Wanderer" am Pfänder tragen verdächtige Socken. Es könnten Antennen sein. Nicht ansprechen! Wer hat Sichtkontakt?</p>
+                    </div>
+
+                    <div class="forum-post">
+                        <div><span class="user-tag">TraktorTom99</span> <span class="timestamp">heute, 13:45</span></div>
+                        <p>Suche Schaltplan für Steyr 8080. Will die Hupe mit dem Nebelhorn der Bodensee-Flotte austauschen. Hat wer das PDF?</p>
+                    </div>
+
+                    <div class="forum-post">
+                        <div><span class="user-tag">KaeseKrieger</span> <span class="timestamp">heute, 12:10</span></div>
+                        <p>Hat jemand Erfahrung mit der Goldfolie Typ 4? Meine wird bei Regen durchsichtig. Der Scanner in Hörbranz hat fast mein Schmuggelgut (30kg Bergkäse) entdeckt!!</p>
+                    </div>
+
+                    <div class="forum-post">
+                        <div><span class="user-tag">HiltiHans</span> <span class="timestamp">gestern, 23:00</span></div>
+                        <p>ANLEITUNG: So baut ihr einen handelsüblichen Bohrhammer zur Schallkanone um. <a href="#" onclick="alert('Datei wurde vom BVT gelöscht.')">[LINK_DEFEKT]</a></p>
+                    </div>
+                    
+                    <div style="text-align:center; padding-top:20px;">
+                        <span class="cursor-blink">_</span> ENDE DES FEEDS
+                    </div>
+                </div>
+            </main>
+
+            <aside>
+                <div class="panel">
+                    <h3>SECURE CHAT</h3>
+                    <div id="chat-window">
+                        <div class="chat-msg"><span style="color:cyan">&lt;System&gt;</span> Verschlüsselung aktiv (256-bit Käse-Chiffre).</div>
+                        <div class="chat-msg"><span style="color:yellow">&lt;User1&gt;</span> Ist die Luft rein in Lustenau?</div>
+                        <div class="chat-msg"><span style="color:magenta">&lt;Spaeher_West&gt;</span> Negativ. DAUT-Truppen an der Rheinbrücke.</div>
+                    </div>
+                    <input type="text" id="chatInput" placeholder="Nachricht..." style="width:100%; background:black; color:lime; border:1px solid lime;">
+                </div>
+
+                <div class="panel">
+                    <h3>DOWNLOADS</h3>
+                    <div class="download-item">
+                        <span>guelle_bomber_plan.cad</span>
+                        <a href="#" onclick="startFakeDownload()">[DL]</a>
+                    </div>
+                    <div class="download-item">
+                        <span>wien_spione_liste.txt</span>
+                        <a href="#" onclick="startFakeDownload()">[DL]</a>
+                    </div>
+                    <div class="download-item">
+                        <span>nationalhymne_remix.mp3</span>
+                        <a href="#" onclick="startFakeDownload()">[DL]</a>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <h3>EASTER EGG</h3>
+                    <p>Markiere den schwarzen Text unten:</p>
+                    <p class="hidden-text">Der Fürst trägt heimlich österreichische Unterwäsche. Aber pssst.</p>
+                </div>
+            </aside>
+        </div>
+
+        <footer style="text-align:center; margin-top:50px; border-top:1px solid var(--term-green); padding-top:10px; color:#444;">
+            GLBF NODE SERVER // MAUREN UNDERGROUND // KEIN COPYRIGHT // WIDERSTAND IST PFLICHT
+        </footer>
+
+    </div>
+
+    <div id="virus-overlay">
+        <h1>FATAL SYSTEM ERROR</h1>
+        <p>A fatal exception 0E has occurred at 0028:C0011E36 in VXD VMM(01) + 00010E36.</p>
+        <br>
+        <p>*** BUNDESPOLIZEI WIEN HAT ZUGRIFF AUF DIESES GERÄT ***</p>
+        <p>STANDORT WIRD LOKALISIERT...</p>
+        <p>BLEIBEN SIE RUHIG.</p>
+        <br>
+        <button onclick="document.getElementById('virus-overlay').style.display='none'" style="background:white; color:blue; border:none; padding:10px; font-size:1rem; cursor:pointer;">ESCAPEN (WENN DU SCHNELL BIST)</button>
+    </div>
+
+    <script>
+        /* --- 1. LOGIN LOGIC --- */
+        // Passwort ist 1806
+        const passInput = document.getElementById('passwordInput');
+        passInput.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') {
+                if (passInput.value === '1806') {
+                    document.getElementById('login-msg').innerHTML = "<span style='color:lime'>ACCESS GRANTED. WELCOME, REBEL.</span>";
+                    setTimeout(() => {
+                        document.getElementById('login-overlay').style.display = 'none';
+                        document.getElementById('main-interface').style.display = 'block';
+                        startChatSimulation();
+                    }, 1000);
+                } else {
+                    document.getElementById('login-msg').innerHTML = "<span style='color:red'>ACCESS DENIED. VIENNA TRACE INITIATED.</span>";
+                    passInput.value = '';
+                }
+            }
+        });
+
+        /* --- 2. FAKE DOWNLOAD --- */
+        function startFakeDownload() {
+            alert("DOWNLOAD GESTARTET...\n\nÜbertragungsrate: 2 Byte/s\nVerbleibende Zeit: 104 Jahre\n(Danke an das österreichische Breitbandnetz)");
+        }
+
+        /* --- 3. VIRUS PRANK --- */
+        function triggerVirus() {
+            document.getElementById('virus-overlay').style.display = 'flex';
+            document.getElementById('virus-overlay').style.flexDirection = 'column';
+            document.getElementById('virus-overlay').style.justifyContent = 'center';
+            // Spielt eigentlich einen Sound ab, aber wir lassen es visuell
+        }
+
+        function showPopup(type) {
+            if(type === 'TRAKTOR_MODS') alert("MOD-DATENBANK: \n1. V8-Motor in Steyr 15 (Status: Explodiert)\n2. Panzerplatten aus alten Verkehrsschildern (Status: Bewährt)");
+            if(type === 'CHEMIE') alert("REZEPT 'ALPEN-GLÜHEN':\n50% Hilti-Öl\n40% Hochprozentiger Obstler\n10% Wut");
+        }
+
+        /* --- 4. CHAT SIMULATION --- */
+        const chatWindow = document.getElementById('chat-window');
+        const messages = [
+            {u: 'TraktorTom', c: 'Hat wer noch Nägel? Meine Vorräte sind leer.', color: 'yellow'},
+            {u: 'Admin', c: 'Tom, das gehört ins Forum. Hier nur OP-Talk.', color: 'red'},
+            {u: 'Schatten', c: 'Habe Bewegung im Sektor Dornbirn-Nord gesehen. Schwarze Limousinen.', color: 'cyan'},
+            {u: 'KaeseKing', c: 'Das sind nur die Wiener beim Betriebsausflug. Harmlos.', color: 'lime'},
+            {u: 'System', c: 'WARNUNG: Signalstörung am Pfänder.', color: 'grey'}
+        ];
+
+        function startChatSimulation() {
+            let i = 0;
+            setInterval(() => {
+                if (i < messages.length) {
+                    const msg = messages[Math.floor(Math.random() * messages.length)];
+                    const div = document.createElement('div');
+                    div.className = 'chat-msg';
+                    div.innerHTML = `<span style="color:${msg.color}">&lt;${msg.u}&gt;</span> ${msg.c}`;
+                    chatWindow.appendChild(div);
+                    chatWindow.scrollTop = chatWindow.scrollHeight;
+                }
+            }, 5000); // Alle 5 Sekunden neue Nachricht
+        }
+
+        // Chat Input Fake
+        document.getElementById('chatInput').addEventListener('keyup', function(e){
+            if(e.key === 'Enter') {
+                const val = this.value;
+                const div = document.createElement('div');
+                div.className = 'chat-msg';
+                div.innerHTML = `<span style="color:white">&lt;DU&gt;</span> ${val}`;
+                chatWindow.appendChild(div);
+                this.value = '';
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+                
+                setTimeout(() => {
+                    const reply = document.createElement('div');
+                    reply.className = 'chat-msg';
+                    reply.innerHTML = `<span style="color:cyan">&lt;System&gt;</span> Nachricht von Admin geblockt (Zu wenig Dialekt).`;
+                    chatWindow.appendChild(reply);
+                    chatWindow.scrollTop = chatWindow.scrollHeight;
+                }, 1000);
+            }
+        });
+
+        /* --- 5. KONAMI CODE EASTER EGG --- */
+        const konamiCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+        let konamiIndex = 0;
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    activateTraktorMode();
+                    konamiIndex = 0;
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
+
+        function activateTraktorMode() {
+            alert("CHEAT CODE AKTIVIERT: FLIEGENDE TRAKTOREN FREIGESCHALTET!");
+            const traktor = document.createElement('div');
+            traktor.innerText = "🚜";
+            traktor.className = 'traktor-fly';
+            document.body.appendChild(traktor);
+            
+            // Hintergrund Disco
+            let colors = ['red', 'blue', 'green', 'yellow'];
+            let i = 0;
+            setInterval(() => {
+                document.body.style.backgroundColor = colors[i];
+                i = (i + 1) % colors.length;
+            }, 200);
+            
+            setTimeout(() => {
+                traktor.remove();
+                document.body.style.backgroundColor = 'var(--bg-black)';
+            }, 5000);
+        }
+
+    </script>
+</body>
+</html>

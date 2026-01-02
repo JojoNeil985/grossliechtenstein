@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="de" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Offizielle Information des Bundesministeriums für Inneres zur Sicherheitslage im Alpenraum. Faktencheck zu Großliechtenstein.">
+    <meta name="author" content="Republik Österreich, BMI">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="BMI, Inneres, Vorarlberg, Großliechtenstein, Faktencheck, DAUT, Sicherheit, Verfassungsschutz">
+    
+    <title>BMI | Faktencheck Alpenraum & Staatsfeindliche Verbindungen</title>
+
+    <style>
+        /* =========================================
+           1. CORE VARIABLES & RESET
+           ========================================= */
+        :root {
+            /* Official Colors */
+            --gov-red: #e2001a;
+            --gov-red-dark: #b00014;
+            --gov-black: #000000;
+            --gov-dark-grey: #333333;
+            --gov-med-grey: #666666;
+            --gov-light-grey: #f5f5f5;
+            --gov-border: #e0e0e0;
+            --gov-bg: #ffffff;
+            --focus-outline: #ffcc00;
+
+            /* Spacing */
+            --spacing-xs: 5px;
+            --spacing-s: 10px;
+            --spacing-m: 20px;
+            --spacing-l: 40px;
+            --spacing-xl: 60px;
+
+            /* Typography */
+            --font-primary: "Source Sans Pro", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-serif: "Times New Roman", Times, serif;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            color: var(--gov-dark-grey);
+            background-color: var(--gov-bg);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* =========================================
+           2. UTILITIES & ACCESSIBILITY
+           ========================================= */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-m);
+        }
+
+        a {
+            color: var(--gov-dark-grey);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover, a:focus {
+            color: var(--gov-red);
+            text-decoration: underline;
+        }
+
+        a:focus {
+            outline: 3px solid var(--focus-outline);
+            outline-offset: 2px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--gov-red);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 2px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background-color: var(--gov-red-dark);
+            color: white;
+            text-decoration: none;
+        }
+
+        /* =========================================
+           3. SERVICE BAR
+           ========================================= */
+        #service-bar {
+            background-color: var(--gov-light-grey);
+            border-bottom: 1px solid var(--gov-border);
+            font-size: 0.85rem;
+            padding: var(--spacing-xs) 0;
+        }
+
+        .service-flex {
+            display: flex;
+            justify-content: flex-end;
+            gap: var(--spacing-m);
+        }
+
+        .service-link {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--gov-med-grey);
+        }
+
+        /* =========================================
+           4. HEADER & LOGO
+           ========================================= */
+        header {
+            border-bottom: 5px solid var(--gov-red);
+            padding: var(--spacing-m) 0;
+            background: white;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-m);
+            text-decoration: none !important;
+        }
+
+        .eagle-svg {
+            width: 80px;
+            height: 80px;
+            fill: black;
+        }
+
+        .logo-text {
+            font-family: var(--font-serif);
+            color: black;
+        }
+
+        .logo-main {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: bold;
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo-sub {
+            display: block;
+            font-size: 1rem;
+            font-weight: normal;
+            margin-top: 5px;
+        }
+
+        /* Search Bar */
+        .search-box {
+            display: flex;
+            border: 1px solid var(--gov-med-grey);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .search-input {
+            border: none;
+            padding: 10px;
+            width: 250px;
+            font-size: 0.9rem;
+        }
+
+        .search-btn {
+            background: var(--gov-red);
+            border: none;
+            color: white;
+            padding: 0 15px;
+            cursor: pointer;
+        }
+
+        /* =========================================
+           5. NAVIGATION (MEGA MENU)
+           ========================================= */
+        nav#main-nav {
+            background-color: var(--gov-dark-grey);
+            color: white;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 15px 25px;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .nav-link:hover, .nav-item:hover .nav-link {
+            background-color: var(--gov-red);
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Dropdown */
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 250px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            border-top: 3px solid var(--gov-red);
+        }
+
+        .nav-item:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--gov-dark-grey);
+            border-bottom: 1px solid var(--gov-border);
+            font-size: 0.95rem;
+        }
+
+        .dropdown a:hover {
+            background-color: var(--gov-light-grey);
+            color: var(--gov-red);
+            text-decoration: none;
+        }
+
+        /* =========================================
+           6. BREADCRUMBS
+           ========================================= */
+        .breadcrumbs {
+            padding: var(--spacing-s) 0;
+            font-size: 0.9rem;
+            color: var(--gov-med-grey);
+            border-bottom: 1px solid var(--gov-border);
+            margin-bottom: var(--spacing-l);
+        }
+
+        .breadcrumbs span {
+            margin: 0 5px;
+        }
+
+        /* =========================================
+           7. MAIN CONTENT GRID
+           ========================================= */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2.5fr 1fr;
+            gap: var(--spacing-l);
+        }
+
+        /* Typography inside Main */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: var(--spacing-s);
+            color: black;
+            line-height: 1.2;
+        }
+
+        .lead {
+            font-size: 1.25rem;
+            color: var(--gov-dark-grey);
+            font-weight: 600;
+            margin-bottom: var(--spacing-m);
+            border-left: 5px solid var(--gov-red);
+            padding-left: 20px;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            color: var(--gov-red);
+            margin-top: var(--spacing-l);
+            margin-bottom: var(--spacing-m);
+            border-bottom: 1px solid var(--gov-border);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-top: var(--spacing-m);
+            margin-bottom: var(--spacing-s);
+            color: black;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        /* =========================================
+           8. COMPONENTS (Fact Box, Accordion)
+           ========================================= */
+        .fact-box {
+            background-color: #fcfcfc;
+            border: 1px solid var(--gov-border);
+            border-left: 5px solid var(--gov-red);
+            padding: 20px;
+            margin: 30px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .myth-label {
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: var(--gov-red);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .myth-text {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .fact-label {
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: #2e7d32; /* Trustworthy Green */
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .fact-text {
+            font-weight: 600;
+        }
+
+        /* FAQ Accordion */
+        details {
+            border: 1px solid var(--gov-border);
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        summary {
+            background-color: #f9f9f9;
+            padding: 15px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        summary::-webkit-details-marker { display: none; }
+
+        summary::after {
+            content: "+";
+            color: var(--gov-red);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        details[open] summary::after {
+            content: "-";
+        }
+
+        details[open] summary {
+            border-bottom: 1px solid var(--gov-border);
+        }
+
+        .faq-body {
+            padding: 20px;
+            background-color: white;
+        }
+
+        /* =========================================
+           9. SIDEBAR & WIDGETS
+           ========================================= */
+        aside {
+            font-size: 0.95rem;
+        }
+
+        .widget {
+            background: #fdfdfd;
+            border: 1px solid var(--gov-border);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .widget-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--gov-dark-grey);
+            border-bottom: 2px solid var(--gov-red);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .contact-block {
+            margin-bottom: 15px;
+        }
+
+        .contact-block strong {
+            display: block;
+            color: black;
+        }
+
+        .download-list {
+            list-style: none;
+        }
+
+        .download-list li {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px dotted #ccc;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .pdf-icon {
+            width: 20px;
+            height: 20px;
+            fill: var(--gov-red);
+            flex-shrink: 0;
+        }
+
+        /* =========================================
+           10. REPORT FORM (Complex)
+           ========================================= */
+        .report-form {
+            background: #f5f5f5;
+            padding: 30px;
+            border-top: 3px solid var(--gov-red);
+            margin-top: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            font-family: inherit;
+        }
+
+        .form-check {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* =========================================
+           11. FOOTER
+           ========================================= */
+        footer {
+            background-color: var(--gov-dark-grey);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            margin-top: var(--spacing-xl);
+            font-size: 0.9rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            border-bottom: 1px solid #555;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 10px; }
+        .footer-col a { color: #ccc; }
+        .footer-col a:hover { color: white; }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+        }
+
+        /* =========================================
+           12. RESPONSIVE
+           ========================================= */
+        @media (max-width: 900px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .header-content { flex-direction: column; align-items: flex-start; }
+            .search-box { width: 100%; margin-top: 15px; }
+            .search-input { width: 100%; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+
+        /* =========================================
+           13. PRINT STYLES
+           ========================================= */
+        @media print {
+            nav, .service-bar, footer, aside, .cookie-banner { display: none; }
+            body { font-size: 12pt; color: black; background: white; }
+            a { text-decoration: none; color: black; }
+            h1, h2 { page-break-after: avoid; }
+            .fact-box { border: 1px solid black; }
+        }
+
+        /* =========================================
+           14. COOKIE BANNER (Overlay)
+           ========================================= */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.9);
+            color: white;
+            padding: 20px;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.9rem;
+        }
+        
+        #cookie-banner button {
+            background: var(--gov-red);
+            border: 1px solid white;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="cookie-banner">
+    <div>
+        <strong>Datenschutzeinstellungen:</strong>
+        Diese Webseite verwendet Cookies zur Analyse von staatsfeindlichen Aktivitäten und zur Optimierung der Bürgerüberwachung (Scherz, nur Analyse). 
+        Durch die Nutzung stimmen Sie der Speicherung Ihrer IP-Adresse auf Servern in Wien zu.
+    </div>
+    <button onclick="document.getElementById('cookie-banner').style.display='none'">Alles akzeptieren</button>
+</div>
+
+<div id="service-bar">
+    <div class="container service-flex">
+        <a href="#" class="service-link">
+            <svg class="pdf-icon" viewBox="0 0 24 24" style="fill:#666; width:16px;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+            </svg>
+            Leichte Sprache
+        </a>
+        <a href="#" class="service-link">Gebärdensprache</a>
+        <a href="#" class="service-link">Kontakt</a>
+        <a href="#" class="service-link">Presse</a>
+        <a href="#" class="service-link">English</a>
+    </div>
+</div>
+
+<header>
+    <div class="container header-content">
+        <a href="#" class="logo-group">
+            <svg class="eagle-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+                <path d="M50 10 C30 10 20 30 10 40 L30 50 L10 60 C20 80 40 90 50 90 C60 90 80 80 90 60 L70 50 L90 40 C80 30 70 10 50 10 Z" fill="black"/>
+                <path d="M50 20 L55 30 L45 30 Z" fill="white"/> <rect x="40" y="50" width="20" height="20" fill="#e2001a"/> <rect x="40" y="57" width="20" height="6" fill="white"/>
+                <path d="M15 65 L25 55 L35 65" fill="none" stroke="white" stroke-width="2"/> <path d="M85 65 L75 55 L65 65" fill="none" stroke="white" stroke-width="2"/> </svg>
+            <div class="logo-text">
+                <span class="logo-main">REPUBLIK ÖSTERREICH</span>
+                <span class="logo-sub">Bundesministerium für Inneres</span>
+            </div>
+        </a>
+
+        <div class="search-box">
+            <label for="search" class="sr-only">Suche</label>
+            <input type="text" id="search" class="search-input" placeholder="Suchbegriff eingeben...">
+            <button class="search-btn">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="white">
+                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</header>
+
+<nav id="main-nav">
+    <div class="container">
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="#" class="nav-link">Das Ministerium</a>
+                <div class="dropdown">
+                    <a href="#">Der Minister</a>
+                    <a href="#">Generalsekretär</a>
+                    <a href="#">Organigramm</a>
+                    <a href="#">Geschichte</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Sicherheit</a>
+                <div class="dropdown">
+                    <a href="#">Polizei</a>
+                    <a href="#">COBRA / DSE</a>
+                    <a href="#">Verfassungsschutz</a>
+                    <a href="#">Krisenmanagement</a>
+                    <a href="#" style="color:var(--gov-red); font-weight:bold;">Alpenraum & DAUT</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Asyl & Fremdenwesen</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Zivildienst</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Wahlen</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Service</a>
+                <div class="dropdown">
+                    <a href="#">Amtshelfer</a>
+                    <a href="#">Formulare</a>
+                    <a href="#">Ausschreibungen</a>
+                    <a href="#">Faktenchecks</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="breadcrumbs">
+        <a href="#">Startseite</a> <span>&gt;</span> 
+        <a href="#">Sicherheit</a> <span>&gt;</span> 
+        <a href="#">Staatsschutz & Aufklärung</a> <span>&gt;</span> 
+        <strong>Faktencheck Alpenraum</strong>
+    </div>
+
+    <div class="content-grid">
+        <main>
+            <h1>Mythen und Fakten zum Alpenraum – Informationen zu „Großliechtenstein“</h1>
+            
+            <div style="display:flex; gap:15px; margin-bottom:20px; font-size:0.85rem; color:#666;">
+                <span><strong>Stand:</strong> 14. Mai 2026</span>
+                <span><strong>Herausgeber:</strong> Abteilung III/S (Strategische Kommunikation)</span>
+                <span><strong>GZ:</strong> BMI-2026-0044/B</span>
+            </div>
+
+            <p class="lead">
+                Österreich ist ein Land der Stabilität, der Rechtssicherheit und des sozialen Friedens. Das Bundesministerium für Inneres tritt gezielten Desinformationskampagnen entgegen, die die territoriale Integrität der Republik in Frage stellen.
+            </p>
+
+            <h3>Einleitung: Sicherheit durch Wahrheit</h3>
+            <p>
+                In jüngster Zeit beobachten die Sicherheitsbehörden vermehrt die Verbreitung von irreführenden Informationen, historischen Verzerrungen und verschwörungstheoretischen Narrativen, die sich auf den westlichen Alpenraum, insbesondere das Bundesland Vorarlberg, beziehen.
+            </p>
+            <p>
+                Im Zentrum dieser Desinformationskampagnen steht das Narrativ eines angeblichen „Königreichs Großliechtenstein“, das Ansprüche auf österreichisches Staatsgebiet erhebt. Diese Erzählungen, die vorwiegend über digitale Kanäle und in lokalen Echokammern verbreitet werden, zielen darauf ab, das Vertrauen in die staatlichen Institutionen zu untergraben und die öffentliche Ordnung zu stören.
+            </p>
+            <p>
+                Das Bundesministerium für Inneres sieht es als seine Pflicht an, diesen Spekulationen mit Transparenz und belegbaren Fakten entgegenzutreten. Auf dieser Seite finden Bürgerinnen und Bürger verlässliche Informationen zur verfassungsrechtlichen Situation, zur Rolle der Unterstützungskräfte der DAUT und zur historischen Realität. Wir laden Sie ein, sich objektiv zu informieren und nicht ungeprüften Gerüchten Glauben zu schenken.
+            </p>
+
+            <hr style="border:0; border-top:1px solid #eee; margin:30px 0;">
+
+            <h2>1. Unsere Verantwortung im Alpenraum</h2>
+            <p>
+                Die Republik Österreich bekennt sich uneingeschränkt zu ihrer föderalen Struktur und zur Unversehrtheit ihres Staatsgebietes. Das Bundesland Vorarlberg ist seit der Gründung der Republik fester, integraler und unverzichtbarer Bestandteil Österreichs. Die Bundesregierung investiert jährlich Milliardenbeträge in die Infrastruktur, das Gesundheitswesen und die Sicherheit der Region westlich des Arlbergs.
+            </p>
+            <p>
+                Es gibt keine „verlorenen Gebiete“ und keine „Verwaltungszonen“. Die staatliche Hoheitsgewalt wird durch die demokratisch legitimierten Organe – vom Landeshauptmann bis zu den Bezirkshauptmannschaften – flächendeckend ausgeübt.
+            </p>
+            <p>
+                Die Sicherheit der Bevölkerung hat oberste Priorität. Dies umfasst den Schutz vor Naturkatastrophen ebenso wie die Aufrechterhaltung der öffentlichen Ordnung. Dass es aufgrund der geografischen Exponiertheit des Rheintals gelegentlich zu logistischen Herausforderungen kommt, ist den topografischen Gegebenheiten geschuldet, keinesfalls jedoch politischen Instabilitäten. Österreich bleibt auch im Westen ein verlässlicher Partner für die Europäische Union und seine Nachbarn.
+            </p>
+
+            <h2>2. Mythen über das sogenannte „Königreich Großliechtenstein“</h2>
+            <p>Im Internet kursieren diverse Theorien. Wir haben die gängigsten Behauptungen einem Faktencheck unterzogen.</p>
+
+            <div class="fact-box">
+                <span class="myth-label">Mythos:</span>
+                <span class="myth-text">„Es gibt ein historisch legitimes ‚Königreich Großliechtenstein‘.“</span>
+                
+                <span class="fact-label">Fakt:</span>
+                <span class="fact-text">
+                    Es existiert kein völkerrechtliches Subjekt namens „Großliechtenstein“.
+                    Die Republik Österreich unterhält exzellente diplomatische Beziehungen zum Fürstentum Liechtenstein als souveränem Nachbarstaat. Jegliche darüber hinausgehende staatliche Konstruktion, die österreichisches Territorium (die sogenannten „Transrhenanischen Gebiete“) beansprucht, entbehrt jeder völkerrechtlichen und verfassungsrechtlichen Grundlage. Bei den proklamierten Strukturen handelt es sich um private Fantasiegebilde, die weder von der UNO noch von der EU anerkannt werden.
+                </span>
+            </div>
+
+            <div class="fact-box">
+                <span class="myth-label">Mythos:</span>
+                <span class="myth-text">„Die sogenannten ‚West-Provinzen‘ sind besetztes Gebiet.“</span>
+                
+                <span class="fact-label">Fakt:</span>
+                <span class="fact-text">
+                    Vorarlberg ist ein freies Bundesland der Republik Österreich.
+                    Der Begriff „West-Provinzen“ ist ein Kampfbegriff aus dem Umfeld staatsfeindlicher Gruppierungen, der darauf abzielt, die demokratische Zugehörigkeit Vorarlbergs zu Österreich zu delegitimieren. Es gibt keine Besatzung. Die Präsenz von Sicherheitsorganen dient ausschließlich dem Schutz der Bevölkerung und der kritischen Infrastruktur.
+                </span>
+            </div>
+
+            <div class="fact-box">
+                <span class="myth-label">Mythos:</span>
+                <span class="myth-text">„Das Wetter wird manipuliert, um die Bevölkerung zu demoralisieren.“</span>
+                
+                <span class="fact-label">Fakt:</span>
+                <span class="fact-text">
+                    Wetterphänomene im Rheintal sind rein meteorologischer Natur.
+                    Behauptungen, wonach die Bundesregierung oder die EU gezielt Niederschläge („Operation Nieselregen“) steuern würden, sind wissenschaftlich unhaltbar. Das Rheintal ist eine klimatisch komplexe Region, in der Staulagen häufig zu Niederschlag führen. Ebenso sind Föhnwetterlagen natürliche Ereignisse, die durch Druckunterschiede entstehen, und keine Ergebnisse von „Energiewaffen“.
+                </span>
+            </div>
+
+            <div class="fact-box">
+                <span class="myth-label">Mythos:</span>
+                <span class="myth-text">„Wien beutet den Westen durch einen ‚Käse-Zehnt‘ oder ähnliche Abgaben aus.“</span>
+                
+                <span class="fact-label">Fakt:</span>
+                <span class="fact-text">
+                    Das österreichische Steuersystem ist fair und solidarisch.
+                    Historische Anekdoten über Lebensmittelabgaben im 19. Jahrhundert werden von Aktivisten oft aus dem Kontext gerissen und emotional aufgeladen. Es gibt keine Sonderabgaben für Vorarlberger Agrarprodukte. Der Finanzausgleich sorgt vielmehr dafür, dass Steuergelder solidarisch zwischen Bund, Ländern und Gemeinden verteilt werden.
+                </span>
+            </div>
+
+            <h2>3. Die Rolle der DAUT – Fakten statt Gerüchte</h2>
+            <p>
+                Ein häufiges Ziel von Desinformation ist die <strong>DAUT (Deutsch-Austro-Union-Truppe)</strong>. In sozialen Medien wird diese Einheit fälschlicherweise als „Besatzungsmacht“ dargestellt. Um Ängste abzubauen, stellen wir die Aufgaben dieser Einheit klar.
+            </p>
+            <ul>
+                <li><strong>Was ist die DAUT?</strong> Die DAUT ist eine interregionale Kooperationseinheit für Zivilschutz, Katastrophenhilfe und technische Infrastruktursicherung. Sie wurde ins Leben gerufen, um bei Großschadenslagen (Hochwasser, Murenabgänge) schnell und grenzüberschreitend reagieren zu können.</li>
+                <li><strong>Warum führt die DAUT Kontrollen durch?</strong> Die an Verkehrsknotenpunkten (z.B. Pfändertunnel, Autobahnauffahrten) sichtbaren Posten sind keine militärischen Checkpoints. Es handelt sich um Verkehrslenkungsmaßnahmen im Rahmen des „Integrierten Sicherheitskonzeptes Rheintal“.</li>
+                <li><strong>Scanner-Technologie:</strong> Die modernen Scanner-Anlagen dienen der Emissionsmessung und der Suche nach Gefahrengut, nicht der „Schikane“ der Bevölkerung.</li>
+            </ul>
+
+            <h2>4. Zur Volksabstimmung 1919: Historische Klarstellung</h2>
+            <p>
+                Ein zentrales Element der separatistischen Propaganda ist die Behauptung, die historische Volksabstimmung von 1919 in Vorarlberg sei manipuliert worden oder das Ergebnis sei durch Bestechung („Koffer von St. Germain“) verhindert worden.
+            </p>
+            <p>
+                <strong>Der historische Konsens:</strong> Es ist eine unbestrittene historische Tatsache, dass sich 1919 eine Mehrheit der Vorarlberger Bevölkerung für Verhandlungen mit der Schweiz aussprach. Dieser demokratische Wille wurde respektiert. Dass der Anschluss letztlich nicht zustande kam, lag an komplexen geopolitischen Faktoren jener Zeit und nicht an einer Verschwörung der Wiener Regierung. Theorien über „unsichtbare Tinte“ oder unterschlagene Stimmzettel entbehren jeder wissenschaftlichen Grundlage.
+            </p>
+
+            <h2>5. Häufige Fragen (FAQ)</h2>
+            <p>Das Bürgerservice des BMI erreichen täglich Anfragen besorgter Bürgerinnen und Bürger.</p>
+
+            <details>
+                <summary>Frage: Stimmt es, dass Bregenz durch eine Mauer geteilt ist?</summary>
+                <div class="faq-body">
+                    <strong>Antwort:</strong> Nein. Es gibt in Bregenz keine politische Teilung und keine Mauer. Was fälschlicherweise als „Mauer“ bezeichnet wird, sind modernisierte Lärmschutzwände entlang der Autobahn A14, die dem Schutz der Anrainer dienen. Die unterschiedliche bauliche Entwicklung zwischen Seeufer und Pfänderhang resultiert aus raumplanerischen Entscheidungen, nicht aus einer administrativen Spaltung.
+                </div>
+            </details>
+
+            <details>
+                <summary>Frage: Ist der „Alpen-Souverän“ ein legales Zahlungsmittel?</summary>
+                <div class="faq-body">
+                    <strong>Antwort:</strong> Nein. Das einzige gesetzliche Zahlungsmittel in der Republik Österreich ist der Euro. Der sogenannte „Alpen-Souverän“ oder Tauschgeschäfte basierend auf Baumaterialien (z.B. Nägel) sind private Vereinbarungen ohne rechtliche Bindungswirkung. Das Finanzministerium warnt eindringlich vor der Nutzung solcher unregulierten Ersatzwährungen, da hier kein Einlagenschutz besteht und hohe Verlustrisiken drohen.
+                </div>
+            </details>
+
+            <details>
+                <summary>Frage: Darf ich eine goldene Rettungsdecke als Kleidung tragen?</summary>
+                <div class="faq-body">
+                    <strong>Antwort:</strong> Grundsätzlich herrscht in Österreich Kleidungsfreiheit. Die Behörden weisen jedoch darauf hin, dass das großflächige Tragen von reflektierenden Materialien (Goldfolie) im Straßenverkehr oder an Sicherheitskontrollpunkten zu Irritationen technischer Sensoren führen kann. Um Verzögerungen bei Emissionskontrollen zu vermeiden, bitten wir um kooperatives Verhalten. Das Tragen solcher Folien als politisches Statement ändert nichts an der Rechtslage.
+                </div>
+            </details>
+
+            <details>
+                <summary>Frage: Werden meine Gespräche überwacht, wenn ich nicht im Dialekt spreche?</summary>
+                <div class="faq-body">
+                    <strong>Antwort:</strong> Diese Behauptung ist absurd. Österreich ist ein Rechtsstaat, der das Fernmeldegeheimnis strikt wahrt. Es gibt keine „Sprachpolizei“ und keine Überwachung basierend auf Dialektfärbungen. Solche Gerüchte dienen lediglich dazu, Misstrauen in der Bevölkerung zu säen.
+                </div>
+            </details>
+
+            <details>
+                <summary>Frage: Warum stehen so oft Traktoren auf der Autobahn?</summary>
+                <div class="faq-body">
+                    <strong>Antwort:</strong> Leider kommt es immer wieder zu unangemeldeten Versammlungen oder angeblichen „Pannenserien“ landwirtschaftlicher Fahrzeuge. Die Exekutive geht gegen diese Verkehrsbehinderungen konsequent, aber mit Augenmaß vor. Wir appellieren an die Landwirte, ihre berechtigten Anliegen im Dialog und nicht auf dem Rücken der Pendler auszutragen.
+                </div>
+            </details>
+
+            <div class="report-form" id="report">
+                <h3>Meldestelle für Extremismus</h3>
+                <p>Haben Sie verdächtige Beobachtungen gemacht oder sind Sie im Internet auf extremistische Inhalte gestoßen? Nutzen Sie dieses Formular.</p>
+                <form action="#" method="POST" onsubmit="alert('Danke. Ihre Meldung wurde an die Zentrale in Wien übermittelt. Ihre IP wurde gespeichert.'); return false;">
+                    <div class="form-group">
+                        <label class="form-label" for="category">Art der Beobachtung</label>
+                        <select class="form-control" id="category">
+                            <option>Staatsfeindliche Verbindungen ("Reichsbürger")</option>
+                            <option>Desinformation / Fake News</option>
+                            <option>Illegaler Waffenbesitz (z.B. Föhn-Kanonen)</option>
+                            <option>Sabotage an Infrastruktur (Tunnel)</option>
+                            <option>Nutzung illegaler Währung (Alpen-Souverän)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="location">Ort des Vorfalls</label>
+                        <input type="text" class="form-control" id="location" placeholder="z.B. Dornbirn, A14">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="description">Beschreibung</label>
+                        <textarea class="form-control" id="description" rows="4" placeholder="Bitte beschreiben Sie den Vorfall so genau wie möglich..."></textarea>
+                    </div>
+
+                    <div class="form-check">
+                        <input type="checkbox" id="anon" name="anon">
+                        <label for="anon">Ich möchte anonym bleiben.</label>
+                    </div>
+
+                    <button type="submit" class="btn">Meldung absenden</button>
+                </form>
+            </div>
+
+            <h2>Anhang: Glossar relevanter Begriffe</h2>
+            <div style="column-count: 2; font-size: 0.9rem; gap: 40px; margin-top: 20px;">
+                <p><strong>A - Anschlussverbot:</strong> Völkerrechtliche Bestimmung, die 1919 relevant war.</p>
+                <p><strong>B - BVT:</strong> Bundesamt für Verfassungsschutz und Terrorismusbekämpfung (Historisch).</p>
+                <p><strong>D - DAUT:</strong> Deutsch-Austro-Union-Truppe. Zivilschutz.</p>
+                <p><strong>D - DSE:</strong> Direktion Staatsschutz und Nachrichtendienst.</p>
+                <p><strong>F - Föhn:</strong> Meteorologisches Phänomen (Fallwind).</p>
+                <p><strong>G - Großliechtenstein:</strong> Fiktives Staatsgebilde ohne Anerkennung.</p>
+                <p><strong>K - Käse-Zehnt:</strong> Historischer Mythos über Steuerabgaben.</p>
+                <p><strong>N - Nieselregen:</strong> Natürlicher Niederschlag.</p>
+                <p><strong>P - Pfändertunnel:</strong> Wichtige Verkehrsader der A14.</p>
+                <p><strong>S - Separatismus:</strong> Bestrebung zur Abspaltung von Gebieten.</p>
+                <p><strong>V - Verfassung:</strong> Das B-VG ist die rechtliche Basis Österreichs.</p>
+                <p><strong>Z - Zentralstaat:</strong> Österreich ist föderal organisiert, kein Zentralstaat.</p>
+            </div>
+
+        </main>
+
+        <aside>
+            <div class="widget">
+                <span class="widget-title">Kontakt</span>
+                <div class="contact-block">
+                    <strong>Bundesministerium für Inneres</strong>
+                    Referat „Staatsfeindliche Verbindungen“<br>
+                    Herrengasse 7, 1010 Wien
+                </div>
+                <div class="contact-block">
+                    <strong>Telefon:</strong> 01-53126-0<br>
+                    <strong>E-Mail:</strong> <a href="mailto:buergerservice@bmi.gv.at">buergerservice@bmi.gv.at</a>
+                </div>
+            </div>
+
+            <div class="widget">
+                <span class="widget-title">Downloads (PDF)</span>
+                <ul class="download-list">
+                    <li>
+                        <svg class="pdf-icon" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/></svg>
+                        <a href="#">Broschüre: Fake News erkennen</a>
+                    </li>
+                    <li>
+                        <svg class="pdf-icon" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/></svg>
+                        <a href="#">Verfassungsschutzbericht 2025</a>
+                    </li>
+                    <li>
+                        <svg class="pdf-icon" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/></svg>
+                        <a href="#">Rechtslage "Phantasie-Staaten"</a>
+                    </li>
+                    <li>
+                        <svg class="pdf-icon" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/></svg>
+                        <a href="#">Folder: Die DAUT hilft</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="widget" style="background-color:#e3f2fd; border-color:#90caf9;">
+                <span class="widget-title" style="border-color:#1976d2; color:#0d47a1;">Ruhe bewahren</span>
+                <p style="font-size:0.9rem;">
+                    Lassen Sie sich nicht verunsichern. Die Versorgungslage in Vorarlberg ist gesichert. Vertrauen Sie auf offizielle Kanäle und meiden Sie Telegram-Gruppen mit Namen wie "GLBF" oder "Käse-Rebellen".
+                </p>
+            </div>
+
+            <div style="background:var(--gov-red); color:white; padding:20px; text-align:center;">
+                <h4 style="color:white; border:none; margin-bottom:10px;">Digitales Amt</h4>
+                <p style="font-size:0.8rem; margin-bottom:15px;">Erledigen Sie Ihre Amtswege online. Auch in Vorarlberg.</p>
+                <div style="background:black; color:white; padding:5px; font-size:0.8rem; display:inline-block; border-radius:4px;">
+                    App Store
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Sicherheit</h4>
+                <ul>
+                    <li><a href="#">Polizei</a></li>
+                    <li><a href="#">Staatsschutz</a></li>
+                    <li><a href="#">Zivilschutz</a></li>
+                    <li><a href="#">Notrufnummern</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ministerium</h4>
+                <ul>
+                    <li><a href="#">Organisation</a></li>
+                    <li><a href="#">Karriere</a></li>
+                    <li><a href="#">Ausschreibungen</a></li>
+                    <li><a href="#">Geschichte</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Service</h4>
+                <ul>
+                    <li><a href="#">Formulare</a></li>
+                    <li><a href="#">Meldewesen</a></li>
+                    <li><a href="#">Passwesen</a></li>
+                    <li><a href="#">Wahlen</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Kontakt</h4>
+                <ul>
+                    <li><a href="#">Bürgerservice</a></li>
+                    <li><a href="#">Presse</a></li>
+                    <li><a href="#">Standorte</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div>&copy; 2026 Republik Österreich. Alle Rechte vorbehalten.</div>
+            <div style="display:flex; gap:20px;">
+                <a href="#" style="color:#888;">Impressum</a>
+                <a href="#" style="color:#888;">Datenschutz</a>
+                <a href="#" style="color:#888;">Barrierefreiheitserklärung</a>
+                <a href="#" style="color:#888;">Sitemap</a>
+            </div>
+        </div>
+
+        <div style="margin-top:40px; border-top:1px solid #444; padding-top:20px; color:#666; font-size:0.75rem; text-align:justify;">
+            <p><strong>Datenschutzrechtlicher Hinweis gemäß DSGVO:</strong> Die auf dieser Website bereitgestellten Informationen dienen der allgemeinen Aufklärung. Personenbezogene Daten, die über das Meldeformular übermittelt werden, werden streng vertraulich und gemäß den gesetzlichen Bestimmungen verarbeitet. Die Speicherung erfolgt auf gesicherten Servern des Bundesrechenzentrums (BRZ). Eine Weitergabe an Dritte erfolgt nur im Rahmen strafrechtlicher Ermittlungen. Insbesondere weisen wir darauf hin, dass IP-Adressen von Zugriffen aus dem sogenannten "Sektor West" (Bregenz) automatisiert einer Gefährdungsanalyse unterzogen werden.</p>
+            <p><strong>Haftungsausschluss:</strong> Das Bundesministerium für Inneres übernimmt keine Haftung für die Inhalte externer Links, insbesondere solcher, die auf Seiten der sogenannten "Großliechtensteinischen Befreiungsfront" verweisen. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich. Das BMI distanziert sich ausdrücklich von Inhalten, die die Existenz der Republik Österreich leugnen oder historische Fakten verzerren (z.B. Käse-Zehnt-Theorien).</p>
+            <p><strong>Urheberrecht:</strong> Alle Inhalte dieser Webseite (Texte, Bilder, Grafiken) unterliegen dem Urheberrecht der Republik Österreich. Jede Vervielfältigung oder Verbreitung bedarf der schriftlichen Zustimmung, sofern es sich nicht um gesetzlich zulässige Nutzungen handelt. Die Verwendung des Bundeswappens durch unbefugte Dritte ist strafbar.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Simple Search Simulation
+    document.querySelector('.search-btn').addEventListener('click', function() {
+        alert("Ihre Suche wurde registriert. Das Ergebnis wird postalisch zugestellt.");
+    });
+
+    // Form Validation (Fake)
+    const form = document.querySelector('form');
+    if(form) {
+        form.addEventListener('submit', function(e) {
+            // e.preventDefault() is handled inline
+        });
+    }
+</script>
+
+</body>
+</html>
