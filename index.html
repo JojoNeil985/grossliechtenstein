@@ -3,23 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Offizielles Staatsportal | Königreich Großliechtenstein</title>
+    <title>Staatsportal | Königreich Großliechtenstein</title>
     
-    <!-- Fonts importieren: Playfair Display (Seriös) & Roboto (Modern) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <style>
         /* --- CORE VARIABLES --- */
         :root {
             --primary-blue: #002147; /* Oxford Blue - Authoritär */
             --accent-gold: #C5A059;   /* Muted Gold - Repräsentativ */
-            --bg-light: #F9F9F9;      /* Off-White - Clean */
-            --text-dark: #333333;
-            --text-gray: #666666;
-            --shadow-soft: 0 4px 20px rgba(0,0,0,0.05);
-            --shadow-hover: 0 10px 25px rgba(0,0,0,0.1);
+            --bg-light: #F4F7F6;      /* Off-White - Clean */
+            --text-dark: #1D1D1F;
+            --text-gray: #86868B;
+            --shadow-soft: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-hover: 0 15px 30px rgba(0,0,0,0.15);
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
@@ -50,7 +49,7 @@
             padding: 0 2rem;
         }
 
-        /* --- HEADER (Sticky & Official) --- */
+        /* --- HEADER --- */
         header {
             background: white;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
@@ -78,50 +77,56 @@
         }
 
         .logo-symbol {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: var(--accent-gold);
+            line-height: 0;
         }
 
         .header-meta {
             display: flex;
             align-items: center;
             gap: 20px;
-            font-size: 0.9rem;
-            color: var(--text-gray);
-        }
-
-        .lang-switch span {
-            margin: 0 5px;
-            cursor: pointer;
-        }
-        .lang-switch .active { font-weight: bold; color: var(--primary-blue); }
-
-        .search-bar {
-            background: #f0f0f0;
-            padding: 5px 15px;
-            border-radius: 20px;
             font-size: 0.85rem;
-            color: #999;
-            cursor: not-allowed;
+            color: var(--text-gray);
+            font-weight: 500;
         }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #e6f4ea;
+            color: #1e8e3e;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        
+        .status-dot {
+            width: 8px; height: 8px;
+            background: #1e8e3e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
 
         /* --- HERO SECTION --- */
         .hero {
             background: linear-gradient(135deg, var(--primary-blue) 0%, #00152e 100%);
             color: white;
-            padding: 6rem 0;
+            padding: 5rem 0;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        /* Dekorative Hintergrundelemente */
         .hero::before {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><g fill="%23C5A059" fill-opacity="0.05"><path d="M0 0h40v40H0V0zm20 20h20v20H20V20zM0 20h20v20H0V20zM20 0h20v20H20V0z"/></g></svg>');
-            opacity: 0.3;
+            background-image: repeating-linear-gradient(45deg, rgba(197, 160, 89, 0.05) 0px, rgba(197, 160, 89, 0.05) 1px, transparent 1px, transparent 10px);
         }
 
         .hero-content {
@@ -133,362 +138,237 @@
 
         .hero h1 {
             color: white;
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
             line-height: 1.1;
         }
 
         .hero p {
-            font-size: 1.25rem;
-            opacity: 0.9;
-            margin-bottom: 2.5rem;
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 0;
             font-weight: 300;
+            letter-spacing: 0.5px;
         }
 
-        .btn-primary {
-            display: inline-block;
-            background: var(--accent-gold);
-            color: var(--primary-blue);
-            padding: 15px 35px;
-            font-weight: 500;
-            border-radius: 2px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: var(--transition);
-        }
-
-        .btn-primary:hover {
-            background: white;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        /* --- SERVICES GRID --- */
-        .services {
-            padding: 5rem 0;
+        /* --- DASHBOARD GRID --- */
+        .dashboard {
+            padding: 4rem 0;
+            margin-top: -3rem; /* Overlap effect */
+            position: relative;
+            z-index: 10;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
 
         .card {
             background: white;
-            border-top: 4px solid var(--accent-gold);
-            padding: 2.5rem;
-            border-radius: 4px;
+            padding: 2rem;
+            border-radius: 8px;
             box-shadow: var(--shadow-soft);
             transition: var(--transition);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            height: 100%;
+            border-left: 5px solid transparent;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
         }
 
         .card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-10px);
             box-shadow: var(--shadow-hover);
-            border-top-color: var(--primary-blue);
         }
 
+        /* Card Variants based on Lore */
+        .card.official { border-left-color: var(--primary-blue); }
+        .card.tabloid { border-left-color: #ffcc00; }
+        .card.enemy { border-left-color: #e2001a; }
+        .card.rebel { border-left-color: #00ff00; background: #0a0a0a; color: #00ff00; }
+        .card.wiki { border-left-color: #555; }
+
         .card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            display: block;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: inline-block;
         }
 
         .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .card p {
-            color: var(--text-gray);
             font-size: 0.95rem;
-            margin-bottom: 2rem;
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
         }
+        
+        .card.rebel p { color: #00cc00; }
+        .card.rebel h3 { color: #00ff00; font-family: 'Courier New', monospace; }
 
-        .card-link {
-            font-weight: 500;
-            color: var(--primary-blue);
+        .btn-link {
+            font-weight: 700;
             text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 0.5px;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            color: var(--primary-blue);
             display: flex;
             align-items: center;
             gap: 5px;
         }
-
-        .card-link::after { content: '→'; transition: margin 0.3s; }
-        .card:hover .card-link::after { margin-left: 5px; }
-
-        /* --- NEWS SECTION --- */
-        .news-section {
-            background: white;
-            padding: 5rem 0;
-            border-top: 1px solid #eee;
-        }
-
-        .news-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 3rem;
-            border-bottom: 2px solid var(--primary-blue);
-            padding-bottom: 1rem;
-        }
-
-        .news-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .news-item {
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .news-date {
-            font-family: 'Playfair Display', serif;
-            color: var(--accent-gold);
-            font-weight: 700;
-            font-size: 1.2rem;
-            min-width: 60px;
-            text-align: center;
-            line-height: 1.1;
-        }
         
-        .news-date span {
-            display: block;
-            font-size: 0.8rem;
-            font-family: 'Roboto', sans-serif;
-            color: #999;
-            font-weight: 400;
+        .card.rebel .btn-link { color: #00ff00; }
+        .card.enemy .btn-link { color: #e2001a; }
+        .card.tabloid .btn-link { color: #b38f00; }
+
+        .tag {
+            font-size: 0.6rem;
+            padding: 3px 8px;
+            border-radius: 4px;
             text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 0.5px;
         }
 
-        .news-content h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.3rem;
-            color: var(--primary-blue);
-        }
+        .card.official .tag { background: #e6f0ff; color: var(--primary-blue); }
+        .card.tabloid .tag { background: #fffde7; color: #b38f00; border: 1px solid #ffe57f; }
+        .card.enemy .tag { background: #ffebee; color: #c62828; }
+        .card.rebel .tag { border: 1px solid #00ff00; color: #00ff00; background: transparent; }
+        .card.wiki .tag { background: #f5f5f5; color: #333; }
 
-        .news-content p {
+        /* --- FOOTER --- */
+        footer {
+            background: white;
+            border-top: 1px solid #eee;
+            margin-top: auto;
+            padding: 2rem 0;
+            text-align: center;
             font-size: 0.9rem;
             color: var(--text-gray);
         }
 
-        /* --- FOOTER --- */
-        footer {
-            background: var(--primary-blue);
-            color: white;
-            margin-top: auto;
-            padding: 4rem 0 2rem 0;
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
         }
 
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-col h4 {
-            color: var(--accent-gold);
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1.5rem;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-col ul li a {
-            color: #ccc;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-        }
-
-        .footer-col ul li a:hover { color: white; }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 2rem;
-            text-align: center;
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.4);
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .header-meta { display: none; }
-            .grid { grid-template-columns: 1fr; }
-        }
     </style>
 </head>
 <body>
 
-    <!-- HEADER -->
     <header>
         <div class="container header-inner">
-            <a href="index.html" class="logo">
+            <a href="#" class="logo">
                 <span class="logo-symbol">♔</span>
                 <div>
-                    KÖNIGREICH GROSSLIECHTENSTEIN<br>
-                    <span style="font-size: 0.7rem; font-weight: 400; text-transform: uppercase; color: #666; letter-spacing: 2px;">Offizielles Staatsportal</span>
+                    STAATSPORTAL<br>
+                    <span style="font-size: 0.7rem; font-weight: 400; text-transform: uppercase; color: #666; letter-spacing: 2px;">Königreich Großliechtenstein</span>
                 </div>
             </a>
             
             <div class="header-meta">
-                <div class="search-bar">Suchbegriff eingeben...</div>
-                <div class="lang-switch">
-                    <span class="active">DE</span> | <span>EN</span> | <span>FR</span>
+                <div class="status-indicator">
+                    <div class="status-dot"></div>
+                    SYSTEM: STABIL
                 </div>
+                <span>SECURE ID: 1806-GL</span>
             </div>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
     <section class="hero">
         <div class="container hero-content">
-            <h1>Einheit. Souveränität.<br>Geschichte.</h1>
-            <p>Das zentrale Portal für Bürger, Verwaltung und unsere internationalen Partner.<br>Transparenz und Stärke für ein freies Rheintal.</p>
-            <a href="#news" class="btn-primary">Zur Lage der Nation</a>
+            <h1>Zentrales Verwaltungsarchiv</h1>
+            <p>Willkommen im digitalen Hub. Wählen Sie einen Sektor für den Zugriff.</p>
         </div>
     </section>
 
-    <main>
-        <!-- SERVICES GRID -->
-        <section class="services container">
-            <div class="grid">
-                
-                <!-- Kachel 1: Ministerium -->
-                <a href="./ministerium/index.html" class="card">
-                    <div>
-                        <span class="card-icon">🏛️</span>
-                        <h3>Auswärtiges Amt</h3>
-                        <p>Diplomatische Beziehungen, Sicherheitslage in den besetzten Gebieten (Bregenz-Ost) und Visa-Angelegenheiten.</p>
+    <main class="dashboard container">
+        <div class="grid">
+            
+            <a href="wiki.html" class="card wiki">
+                <div>
+                    <div style="display:flex; justify-content:space-between;">
+                        <span class="card-icon">📚</span>
+                        <span class="tag">Archiv</span>
                     </div>
-                    <span class="card-link">Zum Ministerium</span>
-                </a>
+                    <h3>Historie & Fakten</h3>
+                    <p>Die Enzyklopädie. Detaillierte Hintergrundinformationen zur Geschichte, Hilti-Doktrin, dem Käse-Zehnt und dem Vokal-Krieg.</p>
+                </div>
+                <span class="btn-link">Eintrag lesen &rarr;</span>
+            </a>
 
-                <!-- Kachel 2: Nachrichtenagentur -->
-                <a href="./stimme/index.html" class="card">
-                    <div>
+            <a href="ngl.html" class="card tabloid">
+                <div>
+                    <div style="display:flex; justify-content:space-between;">
                         <span class="card-icon">📰</span>
-                        <h3>Nachrichtenagentur NGL</h3>
-                        <p>Die einzige Quelle für Wahrheit. Offizielle Verlautbarungen, Richtigstellungen und patriotische Berichterstattung.</p>
+                        <span class="tag">Presse</span>
                     </div>
-                    <span class="card-link">Zu den Nachrichten</span>
-                </a>
-
-                <!-- Kachel 3: Bürgerservice -->
-                <a href="./buerger/index.html" class="card">
-                    <div>
-                        <span class="card-icon">🛡️</span>
-                        <h3>Bürgerservice & Sicherheit</h3>
-                        <p>Meldeplattform für Grenzvorfälle, Beantragung der Ehrenstaatsbürgerschaft und Wehrdienst-Informationen.</p>
-                    </div>
-                    <span class="card-link">Dienstleistungen aufrufen</span>
-                </a>
-
-                <!-- Kachel 4: NGOs -->
-                <a href="./ngo/index.html" class="card">
-                    <div>
-                        <span class="card-icon">🤝</span>
-                        <h3>Zivilgesellschaft</h3>
-                        <p>Übersicht unserer strategischen Partner, akkreditierten NGOs und der Jugendorganisationen.</p>
-                    </div>
-                    <span class="card-link">Partnernetzwerk ansehen</span>
-                </a>
-
-            </div>
-        </section>
-
-        <!-- NEWS SECTION -->
-        <section id="news" class="news-section">
-            <div class="container">
-                <div class="news-header">
-                    <h2>Aktuelles aus dem Kabinett</h2>
-                    <a href="./stimme/index.html" style="color: var(--primary-blue); font-weight: 500; font-size: 0.9rem;">Alle Meldungen ansehen &rarr;</a>
+                    <h3>NGL - Die Stimme</h3>
+                    <p>Die einzige zugelassene Tageszeitung. Laut, patriotisch, aggressiv. Aktuelle Meldungen über Wettermanipulation und Traktor-Blockaden.</p>
                 </div>
+                <span class="btn-link">Zeitung aufschlagen &rarr;</span>
+            </a>
 
-                <div class="news-list">
-                    
-                    <article class="news-item">
-                        <div class="news-date">
-                            24<span>Okt</span>
-                        </div>
-                        <div class="news-content">
-                            <h4>Staatsbesuch in Vaduz-West</h4>
-                            <p>S.K.H. der Prinzregent inspizierte heute die Befestigungsanlagen am Rhein. Die Moral der Truppe ist ungebrochen.</p>
-                        </div>
-                    </article>
-
-                    <article class="news-item">
-                        <div class="news-date">
-                            22<span>Okt</span>
-                        </div>
-                        <div class="news-content">
-                            <h4>Richtigstellung: "Atmosphärischer Schutzschild"</h4>
-                            <p>Das Ministerium für Umwelt dementiert Gerüchte über Chemtrails. Die sichtbaren Streifen dienen ausschließlich der Klimamodulation zum Wohle der Landwirtschaft.</p>
-                        </div>
-                    </article>
-
-                    <article class="news-item">
-                        <div class="news-date">
-                            19<span>Okt</span>
-                        </div>
-                        <div class="news-content">
-                            <h4>Infrastrukturprojekt "Hilti-Korridor"</h4>
-                            <p>Der Ausbau der unterirdischen Verbindungswege zwischen Schaan und Feldkirch schreitet planmäßig voran. Zivile Nutzung ab 2027 erwartet.</p>
-                        </div>
-                    </article>
-
+            <a href="bmi.html" class="card enemy">
+                <div>
+                    <div style="display:flex; justify-content:space-between;">
+                        <span class="card-icon">🇦🇹</span>
+                        <span class="tag">Feindbeobachtung</span>
+                    </div>
+                    <h3>Außenministerium Wien</h3>
+                    <p>Zugriff auf Server des österreichischen Innenministeriums (BMI). Analyse der dort verbreiteten "Faktenchecks" und Desinformationen.</p>
                 </div>
-            </div>
-        </section>
+                <span class="btn-link">Feindpropaganda ansehen &rarr;</span>
+            </a>
+
+            <a href="glbf.html" class="card rebel">
+                <div>
+                    <div style="display:flex; justify-content:space-between;">
+                        <span class="card-icon">💀</span>
+                        <span class="tag">Classified</span>
+                    </div>
+                    <h3>Darknet Node 1806</h3>
+                    <p>Internes Netzwerk der Befreiungsfront. Zugriff nur mit Passwort. (Tipp: Gründungsjahr des Rheinbundes).</p>
+                </div>
+                <span class="btn-link">Verbindung herstellen &rarr;</span>
+            </a>
+
+            <a href="cover.html" class="card official">
+                <div>
+                    <div style="display:flex; justify-content:space-between;">
+                        <span class="card-icon">🎨</span>
+                        <span class="tag">Kultur</span>
+                    </div>
+                    <h3>Design Entwürfe</h3>
+                    <p>Visuelle Konzepte für das Staatsmanifest "Das Fürstentum im Schatten". Buchcover-Variationen von Historisch bis Dystopisch.</p>
+                </div>
+                <span class="btn-link">Galerie öffnen &rarr;</span>
+            </a>
+
+        </div>
     </main>
 
-    <!-- FOOTER -->
     <footer>
-        <div class="container footer-content">
-            <div class="footer-col">
-                <h4>Über uns</h4>
-                <p style="color: #ccc; font-size: 0.9rem; line-height: 1.6;">
-                    Das offizielle Portal der Regierung des Königreichs Großliechtenstein. Wir verwalten das historische Erbe der Grafschaft Feldkirch und schützen unsere Bürger vor fremder Einflussnahme.
-                </p>
-            </div>
-            <div class="footer-col">
-                <h4>Rechtliches</h4>
-                <ul>
-                    <li><a href="#">Impressum</a></li>
-                    <li><a href="#">Datenschutzerklärung</a></li>
-                    <li><a href="#">Verfassung von 1862</a></li>
-                    <li><a href="#">Barrierefreiheit</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Kontakt</h4>
-                <ul>
-                    <li><a href="#">Pressebüro</a></li>
-                    <li><a href="#">Regierungsviertel West</a></li>
-                    <li><a href="#">secure@gov.gl</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="container footer-bottom">
-            &copy; 2026 Krone Großliechtenstein. Alle Rechte vorbehalten. | Serverstandort: Vaduz (Sicherheitsstufe 1)
+        <div class="container">
+            <div class="footer-logo">Krone Großliechtenstein</div>
+            <p>Offizielles Regierungsportal. Zugriff protokolliert.</p>
+            <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.6;">
+                Für die vollständige Erfahrung stellen Sie sicher, dass alle HTML-Dateien<br>
+                (wiki.html, ngl.html, bmi.html, glbf.html, cover.html) im selben Ordner liegen.
+            </p>
         </div>
     </footer>
 
